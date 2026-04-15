@@ -3,804 +3,377 @@
 </script>
 
 <template>
-  <div class="container m-auto flex flex-col items-center w-full">
-    <div class="w-7xl relative bg-gray-50 inline-flex flex-col justify-start items-start gap-24">
-      <div class="self-stretch pt-24 flex flex-col justify-start items-center">
-        <div
-            class="self-stretch min-h-[921px] px-24 py-72 relative inline-flex justify-start items-center overflow-hidden">
-          <div
-              class="w-[640px] h-[736.80px] left-[768px] top-[92.10px] absolute opacity-10 inline-flex flex-col justify-start items-start">
-            <div class="w-[640px] h-[640px] relative overflow-hidden">
-              <div
-                  class="w-[480px] h-[480px] left-[80px] top-[80px] absolute outline outline-[0.80px] outline-offset-[-0.40px] outline-zinc-900"></div>
-              <div
-                  class="w-[480px] h-[480px] left-[80px] top-[80px] absolute outline outline-[0.80px] outline-offset-[-0.40px] outline-zinc-900"></div>
-              <div
-                  class="w-[480px] h-[480px] left-[80px] top-[80px] absolute outline outline-[0.80px] outline-offset-[-0.40px] outline-zinc-900"></div>
+  <div class="w-full bg-white font-['Inter']">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 w-full px-8 py-4 bg-white/80 backdrop-blur-md border-b border-gray-100 flex justify-between items-center">
+      <div class="text-zinc-900 text-xl font-bold font-noto-serif">Jotham Hernandez</div>
+      <div class="hidden md:flex gap-8 items-center font-noto-serif">
+        <a href="#" class="text-zinc-900 text-sm font-semibold border-b-2 border-zinc-900 pb-1">Research</a>
+        <a href="#" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Expertise</a>
+        <a href="#" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Teaching</a>
+        <a href="#" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Projects</a>
+      </div>
+      <button class="px-6 py-2 bg-black text-white text-xs font-bold tracking-widest uppercase rounded font-['Manrope']">CONTACT</button>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 lg:px-24">
+      <!-- Hero Section -->
+      <section class="relative min-h-[80vh] flex items-center py-24 overflow-hidden">
+        <div class="w-full grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
+          <div class="flex flex-col gap-6 z-10">
+            <span class="text-yellow-800 text-sm font-bold tracking-[0.3em] uppercase font-['Manrope']">PORTFOLIO & ACADEMIC RECORD</span>
+            <h1 class="text-zinc-900 text-6xl lg:text-7xl font-bold font-noto-serif leading-[1.1]">
+              Jotham Hernandez
+            </h1>
+            <p class="text-zinc-600 text-2xl lg:text-3xl font-normal font-noto-serif leading-relaxed max-w-2xl">
+              Technology Professional, Lecturer, and Emerging Researcher in ICT Convergence.
+            </p>
+            <div class="flex gap-4 pt-4">
+              <button class="px-8 py-4 bg-black text-white text-xs font-bold tracking-widest uppercase font-['Manrope']">VIEW WORK</button>
+              <button class="px-8 py-4 border border-zinc-200 text-zinc-900 text-xs font-bold tracking-widest uppercase font-['Manrope'] hover:bg-zinc-50 transition-colors">RESEARCH PROFILE</button>
             </div>
           </div>
-          <div class="max-w-[896px] inline-flex flex-col justify-start items-start gap-6">
-            <div class="self-stretch flex flex-col justify-start items-start">
-              <div
-                  class="justify-center text-yellow-800 text-sm font-normal font-['Manrope'] uppercase leading-5 tracking-[4.20px]">
-                PORTFOLIO & ACADEMIC RECORD
-              </div>
-            </div>
-            <div class="self-stretch flex flex-col justify-start items-start">
-              <div class="justify-center text-black text-7xl font-bold font-['Noto_Serif'] leading-[72px]">Jotham
-                Hernandez
-              </div>
-            </div>
-            <div class="w-full max-w-[672px] pt-2 flex flex-col justify-start items-start">
-              <div class="justify-center text-zinc-700 text-3xl font-normal font-['Noto_Serif'] leading-9">Technology
-                Professional, Lecturer, and<br/>Emerging Researcher in ICT Convergence.
-              </div>
-            </div>
-            <div class="self-stretch pt-4 inline-flex justify-start items-start gap-6">
-              <div
-                  class="px-8 py-4 bg-black border-b-2 border-black/0 inline-flex flex-col justify-center items-center">
-                <div
-                    class="text-center justify-center text-white text-sm font-normal font-['Manrope'] uppercase leading-5 tracking-wider">
-                  VIEW WORK
-                </div>
-              </div>
-              <div
-                  class="px-8 py-4 outline outline-1 outline-neutral-300/20 inline-flex flex-col justify-center items-center">
-                <div
-                    class="text-center justify-center text-black text-sm font-normal font-['Manrope'] uppercase leading-5 tracking-wider">
-                  RESEARCH PROFILE
-                </div>
-              </div>
+          <div class="absolute right-[-10%] top-1/2 -translate-y-1/2 opacity-5 pointer-events-none">
+            <div class="w-[600px] h-[600px] border border-zinc-900 flex items-center justify-center">
+              <div class="w-[450px] h-[450px] border border-zinc-900 rotate-45"></div>
             </div>
           </div>
         </div>
-        <div class="self-stretch px-24 py-32 bg-zinc-100 flex flex-col justify-start items-start">
-          <div class="w-full max-w-[1280px] flex flex-row justify-start items-start">
-            <div
-                class="self-stretch relative bg-white rounded-md outline outline-1 outline-neutral-300/20 inline-flex flex-col justify-center items-start overflow-hidden">
-              <div class="self-stretch h-[531.66px] relative bg-blend-saturation bg-white"></div>
-              <div class="w-96 h-[531.66px] left-0 top-0 absolute bg-black/5"></div>
-            </div>
-            <div class="pl-12 inline-flex flex-col justify-start items-start gap-8">
-              <div class="self-stretch flex flex-col justify-start items-start">
-                <div
-                    class="self-stretch justify-center text-zinc-900 text-3xl font-semibold font-['Noto_Serif'] leading-9">
-                  Synthesizing Practical Systems with<br/>Institutional Knowledge
-                </div>
-              </div>
-              <div class="self-stretch flex flex-col justify-start items-start gap-6">
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div class="self-stretch justify-center text-zinc-700 text-lg font-normal font-['Inter'] leading-7">As
-                    an IT professional and former lecturer, my career has been<br/>defined by the intersection of
-                    rigorous
-                    technical implementation<br/>and academic inquiry. I bridge the gap between building resilient<br/>digital
-                    infrastructures and the theoretical frameworks that govern<br/>them.
-                  </div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div class="self-stretch justify-center text-zinc-700 text-lg font-normal font-['Inter'] leading-7">
-                    With
-                    a foundation in diverse technologies and a passion for ICT<br/>convergence, I am transitioning
-                    toward
-                    a focused research<br/>trajectory. My goal is to advance how institutions leverage<br/>emerging
-                    technologies to create sustainable, human-centered<br/>ecosystems.
-                  </div>
-                </div>
-              </div>
-            </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="py-24 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start bg-zinc-100 -mx-6 lg:-mx-24 px-6 lg:px-24">
+        <div class="lg:col-span-4 aspect-[4/5] bg-zinc-200 overflow-hidden rounded-sm grayscale">
+          <img src="https://placehold.co/800x1000" alt="Profile" class="w-full h-full object-cover opacity-90" />
+        </div>
+        <div class="lg:col-span-8 flex flex-col gap-8">
+          <h2 class="text-zinc-900 text-3xl lg:text-4xl font-bold font-noto-serif leading-tight">
+            Synthesizing Practical Systems with Institutional Knowledge
+          </h2>
+          <div class="flex flex-col gap-6 text-zinc-600 text-lg leading-relaxed font-['Inter']">
+            <p>
+              As an IT professional and former lecturer, my career has been defined by the intersection of rigorous technical implementation and academic inquiry. I bridge the gap between building resilient digital infrastructures and the theoretical frameworks that govern them.
+            </p>
+            <p>
+              With a foundation in diverse technologies and a passion for ICT convergence, I am transitioning toward a focused research trajectory. My goal is to advance how institutions leverage emerging technologies to create sustainable, human-centered ecosystems.
+            </p>
           </div>
         </div>
-        <div class="w-[1088px] max-w-[1280px] py-32 flex flex-col justify-start items-start gap-20">
-          <div class="self-stretch flex flex-col justify-start items-start gap-4">
-            <div class="self-stretch flex flex-col justify-start items-start">
-              <div class="self-stretch justify-center text-zinc-900 text-4xl font-bold font-['Noto_Serif'] leading-10">
-                Research Interests
-              </div>
+      </section>
+
+      <!-- Research Interests -->
+      <section class="py-32">
+        <div class="mb-16">
+          <h2 class="text-zinc-900 text-4xl font-bold font-noto-serif mb-4">Research Interests</h2>
+          <div class="w-24 h-1 bg-yellow-800"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="p-10 bg-white border border-zinc-100 shadow-sm flex flex-col gap-6">
+            <div class="w-10 h-10 flex items-center justify-center text-yellow-800">
+              <span class="text-2xl">☀</span>
             </div>
+            <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">ICT Convergence</h3>
+            <p class="text-zinc-600 text-sm leading-relaxed">
+              Exploring the integration of disparate information and communication technologies into cohesive, intelligent systems.
+            </p>
+          </div>
+          <div class="p-10 bg-white border border-zinc-100 shadow-sm flex flex-col gap-6">
+            <div class="w-10 h-10 flex items-center justify-center text-yellow-800">
+              <span class="text-2xl">📍</span>
+            </div>
+            <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">Human-Centered AI & Web Systems</h3>
+            <p class="text-zinc-600 text-sm leading-relaxed">
+              Investigating how artificial intelligence can be ethically integrated into web architectures to enhance user agency and accessibility across institutional platforms.
+            </p>
+          </div>
+          <div class="p-10 bg-white border border-zinc-100 shadow-sm flex flex-col gap-6">
+            <div class="w-10 h-10 flex items-center justify-center text-yellow-800">
+              <span class="text-2xl">☁</span>
+            </div>
+            <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">Cloud Infrastructure & EdTech</h3>
+            <p class="text-zinc-600 text-sm leading-relaxed">
+              Researching scalable cloud-native frameworks designed specifically for educational delivery and large-scale academic resource management.
+            </p>
+          </div>
+          <div class="p-10 bg-white border border-zinc-100 shadow-sm flex flex-col gap-6">
+            <div class="w-10 h-10 flex items-center justify-center text-yellow-800">
+              <span class="text-2xl">🌴</span>
+            </div>
+            <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">Network Resilience</h3>
+            <p class="text-zinc-600 text-sm leading-relaxed">
+              Studies on autonomous network healing and adaptive infrastructure for mission-critical institutional operations.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Core Expertise -->
+    <section class="bg-black py-32 text-white">
+      <div class="max-w-7xl mx-auto px-6 lg:px-24">
+        <div class="mb-20">
+          <h2 class="text-4xl font-bold font-noto-serif mb-4">Core Expertise</h2>
+          <span class="text-zinc-500 text-xs font-medium tracking-widest uppercase font-['Manrope']">TECHNICAL COMPETENCIES & PROFESSIONAL DOMAINS</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-x-16 lg:gap-y-20">
+          <div class="pl-6 border-l-2 border-orange-200 flex flex-col gap-4">
+            <h3 class="text-xl font-bold font-noto-serif">Web Development</h3>
+            <p class="text-zinc-500 text-sm leading-relaxed font-['Inter']">
+              Full-stack architecture with focus on React, Node.js, and secure API integration for enterprise-level applications.
+            </p>
+          </div>
+          <div class="pl-6 border-l-2 border-orange-200 flex flex-col gap-4">
+            <h3 class="text-xl font-bold font-noto-serif">Cloud & SysAdmin</h3>
+            <p class="text-zinc-500 text-sm leading-relaxed font-['Inter']">
+              Management of AWS/Azure environments, containerization (Docker/K8s), and automated CI/CD pipelines.
+            </p>
+          </div>
+          <div class="pl-6 border-l-2 border-orange-200 flex flex-col gap-4">
+            <h3 class="text-xl font-bold font-noto-serif">Network Infrastructure</h3>
+            <p class="text-zinc-500 text-sm leading-relaxed font-['Inter']">
+              Design and optimization of campus-wide LAN/WAN architectures and cybersecurity protocols.
+            </p>
+          </div>
+          <div class="pl-6 border-l-2 border-orange-200 flex flex-col gap-4">
+            <h3 class="text-xl font-bold font-noto-serif">API Architecture</h3>
+            <p class="text-zinc-500 text-sm leading-relaxed font-['Inter']">
+              Developing RESTful and GraphQL interfaces for high-concurrency data exchange between legacy and modern systems.
+            </p>
+          </div>
+          <div class="pl-6 border-l-2 border-orange-200 flex flex-col gap-4">
+            <h3 class="text-xl font-bold font-noto-serif">Tech Documentation</h3>
+            <p class="text-zinc-500 text-sm leading-relaxed font-['Inter']">
+              Crafting meticulous technical specifications, white papers, and instructional manuals for complex software ecosystems.
+            </p>
+          </div>
+          <div class="pl-6 border-l-2 border-orange-200 flex flex-col gap-4">
+            <h3 class="text-xl font-bold font-noto-serif">Academic Instruction</h3>
+            <p class="text-zinc-500 text-sm leading-relaxed font-['Inter']">
+              Curriculum development and classroom leadership in Computer Science fundamentals and advanced ICT topics.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-6 lg:px-24">
+      <!-- Selected Projects -->
+      <section class="py-32">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+          <div class="flex flex-col gap-4">
+            <h2 class="text-zinc-900 text-4xl font-bold font-noto-serif">Selected Projects</h2>
             <div class="w-24 h-1 bg-yellow-800"></div>
           </div>
-          <div class="self-stretch inline-flex flex-row flex-wrap w-full gap-7 justify-start items-start">
-            <div
-                class="self-stretch flex-grow p-10 bg-white outline outline-1 outline-neutral-300/20 inline-flex flex-col justify-start items-start">
-              <div class="self-stretch flex flex-col justify-start items-start gap-4">
-                <div class="w-9 h-9 bg-yellow-800"></div>
-                <div class="self-stretch pt-2 flex flex-col justify-start items-start">
-                  <div
-                      class="self-stretch justify-center text-zinc-900 text-xl font-bold font-['Noto_Serif'] leading-7">
-                    ICT Convergence
-                  </div>
-                </div>
-                <div class="self-stretch pb-px flex flex-col justify-start items-start">
-                  <div class="self-stretch justify-center text-zinc-700 text-sm font-normal font-['Inter'] leading-6">
-                    Exploring the integration of disparate<br/>information and communication<br/>technologies into
-                    cohesive, intelligent<br/>systems.
-                  </div>
-                </div>
+          <p class="text-zinc-600 text-sm leading-relaxed max-w-sm font-['Inter']">
+            A selection of institutional infrastructure projects and technical implementations developed for academic and corporate environments.
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-32">
+          <!-- Project 1 -->
+          <div class="relative group">
+            <div class="w-full lg:w-3/4 aspect-video bg-zinc-100 overflow-hidden rounded-sm">
+              <img src="https://placehold.co/1200x800" alt="ICT Infrastructure" class="w-full h-full object-cover opacity-80" />
+            </div>
+            <div class="lg:absolute right-0 top-1/2 lg:-translate-y-1/2 w-full lg:w-[500px] p-10 bg-white border border-zinc-100 shadow-xl lg:mt-0 mt-8">
+              <span class="text-yellow-800 text-[10px] font-bold tracking-[0.2em] uppercase font-['Manrope']">INSTITUTIONAL SYSTEMS</span>
+              <h3 class="text-zinc-900 text-2xl font-bold font-noto-serif mt-4 mb-4">Institutional ICT Infrastructure Migration</h3>
+              <p class="text-zinc-600 text-sm leading-relaxed mb-8 font-['Inter']">
+                Led the comprehensive overhaul and migration of campus-wide network services to a hybrid cloud architecture, improving uptime by 40% and enhancing security protocols for 5,000+ active users.
+              </p>
+              <div class="flex gap-2 font-['Manrope']">
+                <span class="px-3 py-1 bg-orange-100 text-yellow-800 text-[10px] font-bold uppercase rounded-full">AWS</span>
+                <span class="px-3 py-1 bg-orange-100 text-yellow-800 text-[10px] font-bold uppercase rounded-full">CISCO</span>
+                <span class="px-3 py-1 bg-orange-100 text-yellow-800 text-[10px] font-bold uppercase rounded-full">DOCKER</span>
               </div>
             </div>
-            <div
-                class="self-stretch flex-grow px-10 pt-10 pb-16 bg-white outline outline-1 outline-neutral-300/20 inline-flex flex-col justify-start items-start">
-              <div class="w-96 max-w-96 flex flex-col justify-start items-start gap-3.5">
-                <div class="w-7 h-7 bg-yellow-800"></div>
-                <div class="self-stretch pt-2.5 flex flex-col justify-start items-start">
-                  <div
-                      class="self-stretch justify-center text-zinc-900 text-xl font-bold font-['Noto_Serif'] leading-7">
-                    Human-Centered AI & Web Systems
-                  </div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div class="self-stretch justify-center text-zinc-700 text-sm font-normal font-['Inter'] leading-6">
-                    Investigating how artificial intelligence can be ethically integrated<br/>into web architectures to
-                    enhance user agency and accessibility<br/>across institutional platforms.
-                  </div>
-                </div>
-              </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="relative group flex flex-col lg:items-end">
+            <div class="w-full lg:w-3/4 aspect-video bg-zinc-100 overflow-hidden rounded-sm">
+              <img src="https://placehold.co/1200x800" alt="Monitoring Platform" class="w-full h-full object-cover opacity-80" />
             </div>
-            <div
-                class="self-stretch p-10 flex-grow bg-white outline outline-1 outline-neutral-300/20 inline-flex flex-col justify-start items-start">
-              <div class="w-96 max-w-96 flex flex-col justify-start items-start gap-3.5">
-                <div class="w-8 h-6 bg-yellow-800"></div>
-                <div class="self-stretch pt-2.5 flex flex-col justify-start items-start">
-                  <div
-                      class="self-stretch justify-center text-zinc-900 text-xl font-bold font-['Noto_Serif'] leading-7">
-                    Cloud Infrastructure & EdTech
-                  </div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div class="self-stretch justify-center text-zinc-700 text-sm font-normal font-['Inter'] leading-6">
-                    Researching scalable cloud-native frameworks designed<br/>specifically for educational delivery and
-                    large-scale academic<br/>resource management.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-                class="self-stretch flex-grow p-10 bg-white outline outline-1 outline-neutral-300/20 inline-flex flex-col justify-start items-start">
-              <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
-                <div class="w-8 h-8 bg-yellow-800"></div>
-                <div class="self-stretch pt-2.5 flex flex-col justify-start items-start">
-                  <div
-                      class="self-stretch justify-center text-zinc-900 text-xl font-bold font-['Noto_Serif'] leading-7">
-                    Network Resilience
-                  </div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div class="self-stretch justify-center text-zinc-700 text-sm font-normal font-['Inter'] leading-6">
-                    Studies on autonomous network healing<br/>and adaptive infrastructure for mission-<br/>critical
-                    institutional operations.
-                  </div>
-                </div>
+            <div class="lg:absolute left-0 top-1/2 lg:-translate-y-1/2 w-full lg:w-[500px] p-10 bg-white border border-zinc-100 shadow-xl lg:mt-0 mt-8">
+              <span class="text-yellow-800 text-[10px] font-bold tracking-[0.2em] uppercase font-['Manrope']">CLOUD OPTIMIZATION</span>
+              <h3 class="text-zinc-900 text-2xl font-bold font-noto-serif mt-4 mb-4">Internal Service Monitoring Platform</h3>
+              <p class="text-zinc-600 text-sm leading-relaxed mb-8 font-['Inter']">
+                Developed a bespoke dashboard for real-time monitoring of institutional digital assets. Built with a focus on data visualization and proactive threat detection using machine learning heuristics.
+              </p>
+              <div class="flex gap-2 font-['Manrope']">
+                <span class="px-3 py-1 bg-orange-100 text-yellow-800 text-[10px] font-bold uppercase rounded-full">REACT</span>
+                <span class="px-3 py-1 bg-orange-100 text-yellow-800 text-[10px] font-bold uppercase rounded-full">PYTHON</span>
+                <span class="px-3 py-1 bg-orange-100 text-yellow-800 text-[10px] font-bold uppercase rounded-full">GRAFANA</span>
               </div>
             </div>
           </div>
         </div>
-        <div class="self-stretch px-24 py-32 bg-black flex flex-col justify-start items-start">
-          <div class="w-full max-w-[1280px] flex flex-col justify-start items-start gap-20">
-            <div class="self-stretch flex flex-col justify-start items-start gap-4">
-              <div class="self-stretch flex flex-col justify-start items-start">
-                <div class="self-stretch justify-center text-white text-4xl font-bold font-['Noto_Serif'] leading-10">
-                  Core
-                  Expertise
-                </div>
-              </div>
-              <div class="self-stretch flex flex-col justify-start items-start">
-                <div
-                    class="self-stretch justify-center text-slate-500 text-xs font-medium font-['Manrope'] uppercase leading-4 tracking-wider">
-                  TECHNICAL COMPETENCIES & PROFESSIONAL DOMAINS
-                </div>
-              </div>
+      </section>
+
+      <!-- Teaching Experience -->
+      <section class="py-32 bg-zinc-100 -mx-6 lg:-mx-24 px-6 lg:px-24">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          <div class="lg:col-span-4 flex flex-col gap-6">
+            <h2 class="text-zinc-900 text-4xl font-bold font-noto-serif leading-tight">Teaching Experience</h2>
+            <p class="text-zinc-600 text-base leading-relaxed font-['Inter']">
+              During my tenure as a lecturer, I focused on making complex computational concepts accessible through practical, project-based learning. My pedagogy emphasizes the "why" behind the code.
+            </p>
+          </div>
+          <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-16">
+            <div class="flex flex-col gap-3">
+              <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">Database Systems</h3>
+              <span class="text-yellow-800 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">CORE INSTRUCTION</span>
+              <p class="text-zinc-600 text-sm leading-relaxed font-['Inter']">Modeling, SQL optimization, and NoSQL architectures for enterprise scale.</p>
             </div>
-            <div class="w-full grid grid-cols-3 gap-7 justify-start items-start">
-              <div class="self-stretch inline-flex flex-col justify-start items-start gap-3.5">
-                <div class="self-stretch pl-4 border-l-2 border-orange-200 flex flex-col justify-start items-start">
-                  <div class="justify-center text-white text-xl font-bold font-['Noto_Serif'] leading-7">Web Development
-                  </div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div class="self-stretch justify-center text-slate-500 text-sm font-normal font-['Inter'] leading-6">
-                    Full-stack architecture with focus on React,<br/>Node.js, and secure API integration for<br/>enterprise-level
-                    applications.
-                  </div>
-                </div>
-              </div>
-              <div class="self-stretch inline-flex flex-col justify-start items-start gap-3.5">
-                <div class="self-stretch pl-4 border-l-2 border-orange-200 flex flex-col justify-start items-start">
-                  <div class="justify-center text-white text-xl font-bold font-['Noto_Serif'] leading-7">Cloud &
-                    SysAdmin
-                  </div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div class="self-stretch justify-center text-slate-500 text-sm font-normal font-['Inter'] leading-6">
-                    Management of AWS/Azure environments,<br/>containerization (Docker/K8s), and automated<br/>CI/CD
-                    pipelines.
-                  </div>
-                </div>
-              </div>
-              <div class="self-stretch inline-flex flex-col justify-start items-start gap-3.5">
-                <div class="self-stretch pl-4 border-l-2 border-orange-200 flex flex-col justify-start items-start">
-                  <div class="justify-center text-white text-xl font-bold font-['Noto_Serif'] leading-7">Network
-                    Infrastructure
-                  </div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div class="self-stretch justify-center text-slate-500 text-sm font-normal font-['Inter'] leading-6">
-                    Design and optimization of campus-wide<br/>LAN/WAN architectures and cybersecurity<br/>protocols.
-                  </div>
-                </div>
-              </div>
-              <div class="self-stretch inline-flex flex-col justify-start items-start gap-3.5">
-                <div class="self-stretch pl-4 border-l-2 border-orange-200 flex flex-col justify-start items-start">
-                  <div class="justify-center text-white text-xl font-bold font-['Noto_Serif'] leading-7">API
-                    Architecture
-                  </div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div class="self-stretch justify-center text-slate-500 text-sm font-normal font-['Inter'] leading-6">
-                    Developing RESTful and GraphQL interfaces for<br/>high-concurrency data exchange between legacy<br/>and
-                    modern systems.
-                  </div>
-                </div>
-              </div>
-              <div class="self-stretch inline-flex flex-col justify-start items-start gap-3.5">
-                <div class="self-stretch pl-4 border-l-2 border-orange-200 flex flex-col justify-start items-start">
-                  <div class="justify-center text-white text-xl font-bold font-['Noto_Serif'] leading-7">Tech
-                    Documentation
-                  </div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div class="self-stretch justify-center text-slate-500 text-sm font-normal font-['Inter'] leading-6">
-                    Crafting meticulous technical specifications,<br/>white papers, and instructional manuals for<br/>complex
-                    software ecosystems.
-                  </div>
-                </div>
-              </div>
-              <div class="self-stretch inline-flex flex-col justify-start items-start gap-3.5">
-                <div class="self-stretch pl-4 border-l-2 border-orange-200 flex flex-col justify-start items-start">
-                  <div class="justify-center text-white text-xl font-bold font-['Noto_Serif'] leading-7">Academic
-                    Instruction
-                  </div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div class="self-stretch justify-center text-slate-500 text-sm font-normal font-['Inter'] leading-6">
-                    Curriculum development and classroom<br/>leadership in Computer Science fundamentals<br/>and
-                    advanced
-                    ICT topics.
-                  </div>
-                </div>
-              </div>
+            <div class="flex flex-col gap-3">
+              <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">Programming Logic</h3>
+              <span class="text-yellow-800 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">FOUNDATIONAL INSTRUCTION</span>
+              <p class="text-zinc-600 text-sm leading-relaxed font-['Inter']">Algorithmic thinking and problem solving using C++, Java, and Python.</p>
+            </div>
+            <div class="flex flex-col gap-3">
+              <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">Data Structures</h3>
+              <span class="text-yellow-800 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">CORE INSTRUCTION</span>
+              <p class="text-zinc-600 text-sm leading-relaxed font-['Inter']">Analysis of linear and non-linear structures for efficient computation.</p>
+            </div>
+            <div class="flex flex-col gap-3">
+              <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">Operating Systems</h3>
+              <span class="text-yellow-800 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">ADVANCED INSTRUCTION</span>
+              <p class="text-zinc-600 text-sm leading-relaxed font-['Inter']">Process management, memory allocation, and kernel architectures.</p>
             </div>
           </div>
         </div>
-        <div class="w-[1088px] max-w-[1280px] py-32 flex flex-col justify-start items-start gap-20">
-          <div class="self-stretch inline-flex justify-between items-end">
-            <div class="inline-flex flex-col justify-start items-start gap-4">
-              <div class="justify-center text-zinc-900 text-4xl font-bold font-['Noto_Serif'] leading-10">Selected
-                Projects
-              </div>
-              <div class="w-24 h-1 bg-yellow-800"></div>
+      </section>
+
+      <!-- Education -->
+      <section class="py-32 text-center">
+        <div class="flex flex-col items-center mb-20 gap-4">
+          <h2 class="text-zinc-900 text-4xl font-bold font-noto-serif">Education</h2>
+          <div class="w-24 h-1 bg-yellow-800"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="p-12 bg-white border border-zinc-100 flex flex-col items-center gap-6 shadow-sm">
+            <div class="w-12 h-10 flex items-center justify-center">
+               <span class="text-3xl text-yellow-800">🎓</span>
             </div>
-            <div class="max-w-96 pr-9 inline-flex flex-col justify-start items-start">
-              <div class="justify-center text-zinc-700 text-sm font-normal font-['Inter'] leading-5">A selection of
-                institutional infrastructure projects and technical<br/>implementations developed for academic and
-                corporate<br/>environments.
-              </div>
+            <div class="flex flex-col gap-2">
+              <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">Master of Science in ICT Convergence</h3>
+              <span class="text-yellow-800 text-sm font-bold font-['Manrope']">Handong Global University</span>
             </div>
+            <p class="text-zinc-600 text-sm leading-relaxed font-['Inter']">
+              Advanced research focusing on the synthesis of information technology and industrial application.
+            </p>
           </div>
-          <div class="self-stretch flex flex-col justify-start items-start gap-24">
-            <div class="self-stretch inline-flex flex-col justify-start items-start">
-              <div
-                  class="self-stretch bg-zinc-100 rounded inline-flex flex-col justify-start items-start overflow-hidden">
-                <img class="self-stretch h-96 relative opacity-80" src="https://placehold.co/621x400"/>
-              </div>
-              <div class="self-stretch h-96 relative">
-                <div
-                    class="w-[530.66px] p-12 left-[-96px] top-0 absolute bg-white outline outline-1 outline-neutral-300/20 inline-flex flex-col justify-start items-start gap-4">
-                  <div class="self-stretch flex flex-col justify-start items-start">
-                    <div
-                        class="self-stretch justify-center text-yellow-800 text-xs font-bold font-['Manrope'] uppercase leading-4 tracking-wider">
-                      INSTITUTIONAL SYSTEMS
-                    </div>
-                  </div>
-                  <div class="self-stretch flex flex-col justify-start items-start">
-                    <div
-                        class="self-stretch justify-center text-zinc-900 text-2xl font-bold font-['Noto_Serif'] leading-8">
-                      Institutional ICT Infrastructure<br/>Migration
-                    </div>
-                  </div>
-                  <div class="self-stretch pt-2 pb-px flex flex-col justify-start items-start">
-                    <div class="self-stretch justify-center text-zinc-700 text-sm font-normal font-['Inter'] leading-6">
-                      Led the comprehensive overhaul and migration of campus-wide<br/>network services to a hybrid cloud
-                      architecture, improving uptime<br/>by 40% and enhancing security protocols for 5,000+ active<br/>users.
-                    </div>
-                  </div>
-                  <div class="self-stretch pt-4 inline-flex justify-start items-start gap-2">
-                    <div
-                        class="self-stretch px-3 py-1 bg-orange-200 rounded-xl inline-flex flex-col justify-start items-start">
-                      <div
-                          class="justify-center text-yellow-800 text-[10px] font-normal font-['Manrope'] uppercase leading-4">
-                        AWS
-                      </div>
-                    </div>
-                    <div
-                        class="self-stretch px-3 py-1 bg-orange-200 rounded-xl inline-flex flex-col justify-start items-start">
-                      <div
-                          class="justify-center text-yellow-800 text-[10px] font-normal font-['Manrope'] uppercase leading-4">
-                        CISCO
-                      </div>
-                    </div>
-                    <div
-                        class="self-stretch px-3 py-1 bg-orange-200 rounded-xl inline-flex flex-col justify-start items-start">
-                      <div
-                          class="justify-center text-yellow-800 text-[10px] font-normal font-['Manrope'] uppercase leading-4">
-                        DOCKER
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div class="p-12 bg-white border border-zinc-100 flex flex-col items-center gap-6 shadow-sm">
+            <div class="w-12 h-10 flex items-center justify-center">
+              <span class="text-3xl text-yellow-800">🎖</span>
             </div>
-            <div class="self-stretch inline-flex flex-col justify-start items-start">
-              <div class="self-stretch h-96 relative">
-                <div
-                    class="w-[717.33px] left-[-96px] top-0 absolute bg-zinc-100 rounded inline-flex flex-col justify-start items-start overflow-hidden">
-                  <img class="self-stretch h-96 relative opacity-80" src="https://placehold.co/717x400"/>
-                </div>
-              </div>
-              <div
-                  class="self-stretch p-12 bg-white outline outline-1 outline-neutral-300/20 inline-flex flex-col justify-start items-start gap-4">
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div
-                      class="self-stretch justify-center text-yellow-800 text-xs font-bold font-['Manrope'] uppercase leading-4 tracking-wider">
-                    CLOUD OPTIMIZATION
-                  </div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div
-                      class="self-stretch justify-center text-zinc-900 text-2xl font-bold font-['Noto_Serif'] leading-8">
-                    Internal Service<br/>Monitoring Platform
-                  </div>
-                </div>
-                <div class="self-stretch pt-2 pb-px flex flex-col justify-start items-start">
-                  <div class="self-stretch justify-center text-zinc-700 text-sm font-normal font-['Inter'] leading-6">
-                    Developed a bespoke dashboard for real-time<br/>monitoring of institutional digital assets. Built
-                    with<br/>a
-                    focus on data visualization and proactive threat<br/>detection using machine learning heuristics.
-                  </div>
-                </div>
-                <div class="self-stretch pt-4 inline-flex justify-start items-start gap-2">
-                  <div
-                      class="self-stretch px-3 py-1 bg-orange-200 rounded-xl inline-flex flex-col justify-start items-start">
-                    <div
-                        class="justify-center text-yellow-800 text-[10px] font-normal font-['Manrope'] uppercase leading-4">
-                      REACT
-                    </div>
-                  </div>
-                  <div
-                      class="self-stretch px-3 py-1 bg-orange-200 rounded-xl inline-flex flex-col justify-start items-start">
-                    <div
-                        class="justify-center text-yellow-800 text-[10px] font-normal font-['Manrope'] uppercase leading-4">
-                      PYTHON
-                    </div>
-                  </div>
-                  <div
-                      class="self-stretch px-3 py-1 bg-orange-200 rounded-xl inline-flex flex-col justify-start items-start">
-                    <div
-                        class="justify-center text-yellow-800 text-[10px] font-normal font-['Manrope'] uppercase leading-4">
-                      GRAFANA
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="flex flex-col gap-2">
+              <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">Bachelor of Science in Information Technology</h3>
+              <span class="text-yellow-800 text-sm font-bold font-['Manrope']">Informatics International College</span>
             </div>
+            <p class="text-zinc-600 text-sm leading-relaxed font-['Inter']">
+              Comprehensive study of computer systems, software engineering, and network management.
+            </p>
           </div>
         </div>
-        <div class="self-stretch px-24 py-32 bg-zinc-100 flex flex-col justify-start items-start">
-          <div class="w-full max-w-[1280px] inline-flex flex-col justify-start items-start">
-            <div class="self-stretch pb-24 inline-flex flex-col justify-start items-start gap-6">
-              <div class="self-stretch flex flex-col justify-start items-start">
-                <div
-                    class="self-stretch justify-center text-zinc-900 text-4xl font-bold font-['Noto_Serif'] leading-10">
-                  Teaching<br/>Experience
-                </div>
-              </div>
-              <div class="self-stretch flex flex-col justify-start items-start">
-                <div class="self-stretch justify-center text-zinc-700 text-base font-normal font-['Inter'] leading-6">
-                  During my tenure as a lecturer, I focused<br/>on making complex computational<br/>concepts accessible
-                  through practical,<br/>project-based learning. My pedagogy<br/>emphasizes the "why" behind the code.
-                </div>
-              </div>
-            </div>
-            <div class="self-stretch flex flex-col justify-start items-start">
-              <div
-                  class="self-stretch p-6 border-b border-neutral-300/30 inline-flex flex-col justify-start items-start gap-2">
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div
-                      class="self-stretch justify-center text-zinc-900 text-lg font-bold font-['Noto_Serif'] leading-7">
-                    Database Systems
-                  </div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div
-                      class="self-stretch justify-center text-yellow-800 text-xs font-medium font-['Manrope'] uppercase leading-4 tracking-wider">
-                    CORE INSTRUCTION
-                  </div>
-                </div>
-                <div class="self-stretch pt-1 flex flex-col justify-start items-start">
-                  <div class="self-stretch justify-center text-zinc-700 text-sm font-normal font-['Inter'] leading-5">
-                    Modeling, SQL optimization, and NoSQL<br/>architectures for enterprise scale.
-                  </div>
-                </div>
-              </div>
-              <div
-                  class="self-stretch p-6 border-b border-neutral-300/30 inline-flex flex-col justify-start items-start gap-2">
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div
-                      class="self-stretch justify-center text-zinc-900 text-lg font-bold font-['Noto_Serif'] leading-7">
-                    Programming Logic
-                  </div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div
-                      class="self-stretch justify-center text-yellow-800 text-xs font-medium font-['Manrope'] uppercase leading-4 tracking-wider">
-                    FOUNDATIONAL INSTRUCTION
-                  </div>
-                </div>
-                <div class="self-stretch pt-1 flex flex-col justify-start items-start">
-                  <div class="self-stretch justify-center text-zinc-700 text-sm font-normal font-['Inter'] leading-5">
-                    Algorithmic thinking and problem solving<br/>using C++, Java, and Python.
-                  </div>
-                </div>
-              </div>
-              <div
-                  class="self-stretch p-6 border-b border-neutral-300/30 inline-flex flex-col justify-start items-start gap-2">
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div
-                      class="self-stretch justify-center text-zinc-900 text-lg font-bold font-['Noto_Serif'] leading-7">
-                    Data Structures
-                  </div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div
-                      class="self-stretch justify-center text-yellow-800 text-xs font-medium font-['Manrope'] uppercase leading-4 tracking-wider">
-                    CORE INSTRUCTION
-                  </div>
-                </div>
-                <div class="self-stretch pt-1 flex flex-col justify-start items-start">
-                  <div class="self-stretch justify-center text-zinc-700 text-sm font-normal font-['Inter'] leading-5">
-                    Analysis of linear and non-linear structures<br/>for efficient computation.
-                  </div>
-                </div>
-              </div>
-              <div
-                  class="self-stretch p-6 border-b border-neutral-300/30 inline-flex flex-col justify-start items-start gap-2">
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div
-                      class="self-stretch justify-center text-zinc-900 text-lg font-bold font-['Noto_Serif'] leading-7">
-                    Operating Systems
-                  </div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-start">
-                  <div
-                      class="self-stretch justify-center text-yellow-800 text-xs font-medium font-['Manrope'] uppercase leading-4 tracking-wider">
-                    ADVANCED INSTRUCTION
-                  </div>
-                </div>
-                <div class="self-stretch pt-1 flex flex-col justify-start items-start">
-                  <div class="self-stretch justify-center text-zinc-700 text-sm font-normal font-['Inter'] leading-5">
-                    Process management, memory allocation,<br/>and kernel architectures.
-                  </div>
-                </div>
-              </div>
-            </div>
+      </section>
+
+      <!-- Certifications -->
+      <section class="py-32 bg-zinc-100 -mx-6 lg:-mx-24 px-6 lg:px-24">
+        <div class="flex items-center gap-8 mb-16">
+          <h2 class="text-zinc-900 text-3xl font-bold font-noto-serif whitespace-nowrap">Certifications & Awards</h2>
+          <div class="w-full h-px bg-zinc-200"></div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 font-['Inter']">
+          <div class="p-8 bg-white text-center border border-zinc-100 shadow-sm rounded flex flex-col gap-2">
+            <span class="text-yellow-800 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">CERTIFICATION</span>
+            <p class="text-zinc-900 text-sm font-bold">AWS Certified Solutions Architect</p>
+          </div>
+          <div class="p-8 bg-white text-center border border-zinc-100 shadow-sm rounded flex flex-col gap-2">
+            <span class="text-yellow-800 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">AWARD</span>
+            <p class="text-zinc-900 text-sm font-bold">Gold Medalist: National Web Design</p>
+          </div>
+          <div class="p-8 bg-white text-center border border-zinc-100 shadow-sm rounded flex flex-col gap-2">
+            <span class="text-yellow-800 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">CERTIFICATION</span>
+            <p class="text-zinc-900 text-sm font-bold">Python Data Science Specialization</p>
+          </div>
+          <div class="p-8 bg-white text-center border border-zinc-100 shadow-sm rounded flex flex-col gap-2">
+            <span class="text-yellow-800 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">HACKATHON</span>
+            <p class="text-zinc-900 text-sm font-bold">Top 10 Finalist: Unity Game Jam</p>
           </div>
         </div>
-        <div class="w-[1088px] max-w-[1280px] py-32 flex flex-col justify-start items-start gap-20">
-          <div class="self-stretch flex flex-col justify-start items-center gap-4">
-            <div class="self-stretch flex flex-col justify-start items-center">
-              <div class="text-center justify-center text-zinc-900 text-4xl font-bold font-['Noto_Serif'] leading-10">
-                Education
+      </section>
+
+      <!-- Vision -->
+      <section class="py-32 text-center max-w-4xl mx-auto">
+        <h2 class="text-zinc-900 text-4xl font-bold font-noto-serif mb-12">Academic and Professional Vision</h2>
+        <p class="text-zinc-600 text-2xl font-noto-serif leading-relaxed italic mb-8">
+          "My mission is to facilitate the seamless convergence of emerging technologies within institutional frameworks, ensuring that technical innovation serves as a catalyst for educational excellence and social progress."
+        </p>
+        <div class="flex items-center justify-center gap-4">
+          <div class="w-12 h-px bg-yellow-800"></div>
+          <span class="text-zinc-900 text-xs font-bold tracking-widest uppercase font-['Manrope']">JOTHAM HERNANDEZ</span>
+          <div class="w-12 h-px bg-yellow-800"></div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="py-32 bg-zinc-100 -mx-6 lg:-mx-24 px-6 lg:px-24">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+          <div class="flex flex-col gap-10">
+            <div class="flex flex-col gap-6">
+              <h2 class="text-zinc-900 text-4xl font-bold font-noto-serif">Get in Touch</h2>
+              <p class="text-zinc-600 text-lg leading-relaxed max-w-md font-['Inter']">
+                Open to research collaborations, speaking engagements, and consulting on institutional ICT transformation.
+              </p>
+            </div>
+            <div class="flex flex-col gap-6 font-['Inter']">
+              <div class="flex items-center gap-4 text-zinc-900">
+                <span class="text-xl text-yellow-800">✉</span>
+                <span>jotham.hernandez@example.edu</span>
+              </div>
+              <div class="flex items-center gap-4 text-zinc-900">
+                <span class="text-xl text-yellow-800">🔗</span>
+                <span>linkedin.com/in/jothamh</span>
               </div>
             </div>
-            <div class="w-24 h-1 bg-yellow-800"></div>
           </div>
-          <div class="self-stretch inline-flex justify-center items-start gap-12">
-            <div
-                class="w-[512px] self-stretch max-w-[512px] p-10 bg-white outline outline-1 outline-neutral-300/20 inline-flex flex-col justify-start items-center gap-2">
-              <div class="inline-flex justify-center items-start">
-                <div class="w-11 h-9 bg-yellow-800"></div>
+          <div class="bg-white p-12 border border-zinc-100 shadow-sm font-['Inter']">
+            <form class="flex flex-col gap-8">
+              <div class="flex flex-col gap-2">
+                <label class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">NAME</label>
+                <input type="text" class="w-full bg-zinc-50 border-b border-zinc-200 py-3 focus:outline-none focus:border-black transition-colors" />
               </div>
-              <div class="self-stretch pt-4 flex flex-col justify-start items-center">
-                <div class="text-center justify-center text-zinc-900 text-xl font-bold font-['Noto_Serif'] leading-7">
-                  Master of Science in ICT Convergence
-                </div>
+              <div class="flex flex-col gap-2">
+                <label class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">EMAIL</label>
+                <input type="email" class="w-full bg-zinc-50 border-b border-zinc-200 py-3 focus:outline-none focus:border-black transition-colors" />
               </div>
-              <div class="self-stretch flex flex-col justify-start items-center">
-                <div class="text-center justify-center text-yellow-800 text-sm font-bold font-['Manrope'] leading-5">
-                  Handong Global University
-                </div>
+              <div class="flex flex-col gap-2">
+                <label class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">INQUIRY</label>
+                <textarea rows="4" class="w-full bg-zinc-50 border-b border-zinc-200 py-3 focus:outline-none focus:border-black transition-colors resize-none"></textarea>
               </div>
-              <div class="self-stretch pt-2 flex flex-col justify-start items-center">
-                <div class="text-center justify-center text-zinc-700 text-sm font-normal font-['Inter'] leading-5">
-                  Advanced research focusing on the synthesis of information<br/>technology and industrial application.
-                </div>
-              </div>
-            </div>
-            <div
-                class="w-[512px] self-stretch max-w-[512px] p-10 bg-white outline outline-1 outline-neutral-300/20 inline-flex flex-col justify-start items-center gap-2">
-              <div class="inline-flex justify-center items-start">
-                <div class="w-8 h-10 bg-yellow-800"></div>
-              </div>
-              <div class="self-stretch pt-4 flex flex-col justify-start items-center">
-                <div class="text-center justify-center text-zinc-900 text-xl font-bold font-['Noto_Serif'] leading-7">
-                  Bachelor of Science in Information<br/>Technology
-                </div>
-              </div>
-              <div class="self-stretch flex flex-col justify-start items-center">
-                <div class="text-center justify-center text-yellow-800 text-sm font-bold font-['Manrope'] leading-5">
-                  Informatics International College
-                </div>
-              </div>
-              <div class="self-stretch pt-2 flex flex-col justify-start items-center">
-                <div class="text-center justify-center text-zinc-700 text-sm font-normal font-['Inter'] leading-5">
-                  Comprehensive study of computer systems, software<br/>engineering, and network management.
-                </div>
-              </div>
-            </div>
+              <button class="w-full py-4 bg-black text-white text-xs font-bold tracking-widest uppercase font-['Manrope']">SEND MESSAGE</button>
+            </form>
           </div>
         </div>
-        <div class="self-stretch px-24 py-32 bg-gray-200 flex flex-col justify-start items-start">
-          <div class="w-full max-w-[1280px] flex flex-col justify-start items-start gap-16">
-            <div class="self-stretch inline-flex justify-start items-center gap-8">
-              <div class="inline-flex flex-col justify-start items-start">
-                <div class="justify-center text-zinc-900 text-3xl font-bold font-['Noto_Serif'] leading-9">
-                  Certifications
-                  & Awards
-                </div>
-              </div>
-              <div class="flex-1 h-px opacity-30 bg-neutral-300"></div>
-            </div>
-            <div class="self-stretch inline-flex flex-col justify-start items-start">
-              <div class="self-stretch p-6 bg-white rounded-md inline-flex flex-col justify-start items-start gap-2">
-                <div class="self-stretch flex flex-col justify-start items-center">
-                  <div class="text-center justify-center text-yellow-800 text-xs font-bold font-['Manrope'] leading-4">
-                    CERTIFICATION
-                  </div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-center">
-                  <div class="text-center justify-center text-zinc-900 text-sm font-bold font-['Inter'] leading-5">AWS
-                    Certified Solutions<br/>Architect
-                  </div>
-                </div>
-              </div>
-              <div class="self-stretch p-6 bg-white rounded-md inline-flex flex-col justify-start items-start gap-2">
-                <div class="self-stretch flex flex-col justify-start items-center">
-                  <div class="text-center justify-center text-yellow-800 text-xs font-bold font-['Manrope'] leading-4">
-                    AWARD
-                  </div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-center">
-                  <div class="text-center justify-center text-zinc-900 text-sm font-bold font-['Inter'] leading-5">Gold
-                    Medalist: National Web<br/>Design
-                  </div>
-                </div>
-              </div>
-              <div class="self-stretch p-6 bg-white rounded-md inline-flex flex-col justify-start items-start gap-2">
-                <div class="self-stretch flex flex-col justify-start items-center">
-                  <div class="text-center justify-center text-yellow-800 text-xs font-bold font-['Manrope'] leading-4">
-                    CERTIFICATION
-                  </div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-center">
-                  <div class="text-center justify-center text-zinc-900 text-sm font-bold font-['Inter'] leading-5">
-                    Python
-                    Data Science<br/>Specialization
-                  </div>
-                </div>
-              </div>
-              <div class="self-stretch p-6 bg-white rounded-md inline-flex flex-col justify-start items-start gap-2">
-                <div class="self-stretch flex flex-col justify-start items-center">
-                  <div class="text-center justify-center text-yellow-800 text-xs font-bold font-['Manrope'] leading-4">
-                    HACKATHON
-                  </div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-center">
-                  <div class="text-center justify-center text-zinc-900 text-sm font-bold font-['Inter'] leading-5">Top
-                    10
-                    Finalist: Unity Game<br/>Jam
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-8 bg-zinc-100 border-t border-zinc-200">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+        <div class="text-zinc-900 text-lg font-bold font-noto-serif">Jotham Hernandez</div>
+        <div class="flex flex-wrap justify-center gap-8 text-zinc-400 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">
+          <a href="#" class="hover:text-zinc-900 transition-colors">CURRICULUM VITAE</a>
+          <a href="#" class="hover:text-zinc-900 transition-colors">LINKEDIN</a>
+          <a href="#" class="hover:text-zinc-900 transition-colors">ORCID</a>
+          <a href="#" class="hover:text-zinc-900 transition-colors">GOOGLE SCHOLAR</a>
         </div>
-        <div class="w-[896px] max-w-[896px] py-32 flex flex-col justify-start items-start gap-8">
-          <div class="self-stretch flex flex-col justify-start items-center">
-            <div class="text-center justify-center text-zinc-900 text-4xl font-bold font-['Noto_Serif'] leading-10">
-              Academic and Professional Vision
-            </div>
-          </div>
-          <div class="self-stretch pt-2 flex flex-col justify-start items-center">
-            <div class="text-center justify-center text-zinc-700 text-2xl font-normal font-['Noto_Serif'] leading-10">
-              "My
-              mission is to facilitate the seamless convergence of emerging technologies<br/>within institutional
-              frameworks, ensuring that technical innovation serves as a<br/>catalyst for educational excellence and
-              social progress."
-            </div>
-          </div>
-          <div class="self-stretch inline-flex justify-center items-center gap-4">
-            <div class="w-12 h-px bg-yellow-800"></div>
-            <div class="inline-flex flex-col justify-start items-center">
-              <div
-                  class="text-center justify-center text-zinc-900 text-sm font-normal font-['Manrope'] uppercase leading-5 tracking-wider">
-                JOTHAM HERNANDEZ
-              </div>
-            </div>
-            <div class="w-12 h-px bg-yellow-800"></div>
-          </div>
-        </div>
-        <div class="self-stretch px-24 py-32 bg-zinc-100 flex flex-col justify-start items-start">
-          <div class="self-stretch inline-flex flex-col justify-start items-start">
-            <div class="self-stretch pb-64 inline-flex flex-col justify-start items-start gap-6">
-              <div class="self-stretch flex flex-col justify-start items-start">
-                <div
-                    class="self-stretch justify-center text-zinc-900 text-4xl font-bold font-['Noto_Serif'] leading-10">
-                  Get in Touch
-                </div>
-              </div>
-              <div class="self-stretch flex flex-col justify-start items-start">
-                <div class="self-stretch justify-center text-zinc-700 text-lg font-normal font-['Inter'] leading-7">Open
-                  to research collaborations, speaking engagements,<br/>and consulting on institutional ICT
-                  transformation.
-                </div>
-              </div>
-              <div class="self-stretch pt-4 flex flex-col justify-start items-start gap-6">
-                <div class="self-stretch inline-flex justify-start items-center gap-4">
-                  <div class="inline-flex flex-col justify-start items-start">
-                    <div class="w-5 h-4 bg-yellow-800"></div>
-                  </div>
-                  <div class="inline-flex flex-col justify-start items-start">
-                    <div class="justify-center text-zinc-900 text-base font-normal font-['Inter'] leading-6">
-                      jotham.hernandez@example.edu
-                    </div>
-                  </div>
-                </div>
-                <div class="self-stretch inline-flex justify-start items-center gap-4">
-                  <div class="inline-flex flex-col justify-start items-start">
-                    <div class="w-5 h-2.5 bg-yellow-800"></div>
-                  </div>
-                  <div class="inline-flex flex-col justify-start items-start">
-                    <div class="justify-center text-zinc-900 text-base font-normal font-['Inter'] leading-6">
-                      linkedin.com/in/jothamh
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-                class="self-stretch px-10 pt-10 pb-14 bg-white outline outline-1 outline-neutral-300/20 inline-flex flex-col justify-start items-start">
-              <div class="self-stretch flex flex-col justify-start items-start gap-6">
-                <div class="self-stretch flex flex-col justify-start items-start gap-2">
-                  <div class="self-stretch flex flex-col justify-start items-start">
-                    <div
-                        class="self-stretch justify-center text-zinc-700 text-xs font-medium font-['Manrope'] uppercase leading-4 tracking-wider">
-                      NAME
-                    </div>
-                  </div>
-                  <div class="self-stretch h-11 relative bg-zinc-100 border-b border-neutral-300"></div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-start gap-2">
-                  <div class="self-stretch flex flex-col justify-start items-start">
-                    <div
-                        class="self-stretch justify-center text-zinc-700 text-xs font-medium font-['Manrope'] uppercase leading-4 tracking-wider">
-                      EMAIL
-                    </div>
-                  </div>
-                  <div class="self-stretch h-11 relative bg-zinc-100 border-b border-neutral-300"></div>
-                </div>
-                <div class="self-stretch flex flex-col justify-start items-start gap-2">
-                  <div class="self-stretch flex flex-col justify-start items-start">
-                    <div
-                        class="self-stretch justify-center text-zinc-700 text-xs font-medium font-['Manrope'] uppercase leading-4 tracking-wider">
-                      INQUIRY
-                    </div>
-                  </div>
-                  <div class="self-stretch h-28 relative bg-zinc-100 border-b border-neutral-300"></div>
-                </div>
-                <div class="self-stretch py-4 bg-black inline-flex justify-center items-center">
-                  <div
-                      class="text-center justify-center text-white text-sm font-normal font-['Manrope'] uppercase leading-5 tracking-wider">
-                    SEND MESSAGE
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="text-zinc-400 text-[10px] font-bold tracking-widest font-['Manrope']">
+          © 2024 JOTHAM HERNANDEZ. ALL INTELLECTUAL RIGHTS RESERVED.
         </div>
       </div>
-      <div class="self-stretch px-8 py-12 bg-slate-100 flex flex-col justify-start items-start">
-        <div class="w-full max-w-[1280px] inline-flex justify-between items-center">
-          <div class="inline-flex flex-col justify-start items-start">
-            <div class="justify-center text-slate-900 text-lg font-bold font-['Liberation_Serif'] leading-7">Jotham
-              Hernandez
-            </div>
-          </div>
-          <div class="flex justify-start items-start">
-            <div class="self-stretch inline-flex flex-col justify-start items-start">
-              <div
-                  class="justify-center text-slate-500 text-xs font-normal font-['Nimbus_Sans'] uppercase leading-4 tracking-wider">
-                CURRICULUM VITAE
-              </div>
-            </div>
-            <div class="self-stretch pl-8 inline-flex flex-col justify-center items-start">
-              <div class="flex-1 flex flex-col justify-start items-start">
-                <div
-                    class="justify-center text-slate-500 text-xs font-normal font-['Nimbus_Sans'] uppercase leading-4 tracking-wider">
-                  LINKEDIN
-                </div>
-              </div>
-            </div>
-            <div class="self-stretch pl-8 inline-flex flex-col justify-center items-start">
-              <div class="flex-1 flex flex-col justify-start items-start">
-                <div
-                    class="justify-center text-slate-500 text-xs font-normal font-['Nimbus_Sans'] uppercase leading-4 tracking-wider">
-                  ORCID
-                </div>
-              </div>
-            </div>
-            <div class="self-stretch pl-8 inline-flex flex-col justify-center items-start">
-              <div class="flex-1 flex flex-col justify-start items-start">
-                <div
-                    class="justify-center text-slate-500 text-xs font-normal font-['Nimbus_Sans'] uppercase leading-4 tracking-wider">
-                  GOOGLE SCHOLAR
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="opacity-80 inline-flex flex-col justify-start items-start">
-            <div
-                class="justify-center text-slate-500 text-xs font-normal font-['Nimbus_Sans'] uppercase leading-4 tracking-wider">
-              © 2024 JOTHAM HERNANDEZ. ALL INTELLECTUAL RIGHTS RESERVED.
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-          class="w-[1280px] px-8 py-4 left-0 top-0 absolute bg-slate-50/80 backdrop-blur-[6px] inline-flex justify-between items-center">
-        <div class="inline-flex flex-col justify-start items-start">
-          <div class="justify-center text-slate-900 text-xl font-bold font-['Liberation_Serif'] leading-7">Jotham
-            Hernandez
-          </div>
-        </div>
-        <div class="flex justify-start items-center">
-          <div class="pb-1 border-b-2 border-slate-900 inline-flex flex-col justify-start items-start">
-            <div class="justify-center text-slate-900 text-lg font-semibold font-['Liberation_Serif'] leading-7">
-              Research
-            </div>
-          </div>
-          <div class="pl-8 inline-flex flex-col justify-start items-start">
-            <div class="justify-center text-slate-500 text-lg font-semibold font-['Liberation_Serif'] leading-7">
-              Expertise
-            </div>
-          </div>
-          <div class="pl-8 inline-flex flex-col justify-start items-start">
-            <div class="justify-center text-slate-500 text-lg font-semibold font-['Liberation_Serif'] leading-7">
-              Teaching
-            </div>
-          </div>
-          <div class="pl-8 inline-flex flex-col justify-start items-start">
-            <div class="justify-center text-slate-500 text-lg font-semibold font-['Liberation_Serif'] leading-7">
-              Projects
-            </div>
-          </div>
-        </div>
-        <div class="px-6 py-2 bg-black rounded inline-flex flex-col justify-start items-start">
-          <div
-              class="justify-center text-white text-sm font-normal font-['Manrope'] uppercase leading-5 tracking-wider">
-            CONTACT
-          </div>
-        </div>
-      </div>
-    </div>
+    </footer>
   </div>
 </template>
 
