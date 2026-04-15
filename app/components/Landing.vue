@@ -142,7 +142,7 @@ onMounted(() => {
           <div class="pl-6 border-l-2 border-orange-200 flex flex-col gap-4">
             <h3 class="text-xl font-bold font-noto-serif">Web Development</h3>
             <p class="text-zinc-500 text-sm leading-relaxed font-['Inter']">
-              Full-stack architecture with focus on React, Node.js, and secure API integration for enterprise-level applications.
+              Full-stack architecture with focus on Vue, PHP, Python, and secure API integration for enterprise-level applications.
             </p>
           </div>
           <div class="pl-6 border-l-2 border-orange-200 flex flex-col gap-4">
