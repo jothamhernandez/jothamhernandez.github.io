@@ -1,5 +1,28 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
+import Lenis from 'lenis'
 
+onMounted(() => {
+  const lenis = new Lenis()
+
+  function raf(time: number) {
+    lenis.raf(time)
+    requestAnimationFrame(raf)
+  }
+
+  requestAnimationFrame(raf)
+
+  // Handle anchor link clicks for smooth scrolling
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e: Event) => {
+      e.preventDefault()
+      const targetId = (anchor as HTMLAnchorElement).getAttribute('href')
+      if (targetId && targetId !== '#') {
+        lenis.scrollTo(targetId)
+      }
+    })
+  })
+})
 </script>
 
 <template>
@@ -8,12 +31,12 @@
     <nav class="sticky top-0 z-50 w-full px-8 py-4 bg-white/80 backdrop-blur-md border-b border-gray-100 flex justify-between items-center">
       <div class="text-zinc-900 text-xl font-bold font-noto-serif">Jotham Hernandez</div>
       <div class="hidden md:flex gap-8 items-center font-noto-serif">
-        <a href="#" class="text-zinc-900 text-sm font-semibold border-b-2 border-zinc-900 pb-1">Research</a>
-        <a href="#" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Expertise</a>
-        <a href="#" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Teaching</a>
-        <a href="#" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Projects</a>
+        <a href="#research" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Research</a>
+        <a href="#expertise" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Expertise</a>
+        <a href="#teaching" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Teaching</a>
+        <a href="#projects" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Projects</a>
       </div>
-      <button class="px-6 py-2 bg-black text-white text-xs font-bold tracking-widest uppercase rounded font-['Manrope']">CONTACT</button>
+<!--      <button class="px-6 py-2 bg-black text-white text-xs font-bold tracking-widest uppercase rounded font-['Manrope']">CONTACT</button>-->
     </nav>
 
     <main class="max-w-7xl mx-auto px-6 lg:px-24">
@@ -29,8 +52,8 @@
               Technology Professional, Lecturer, and Emerging Researcher in ICT Convergence.
             </p>
             <div class="flex gap-4 pt-4">
-              <button class="px-8 py-4 bg-black text-white text-xs font-bold tracking-widest uppercase font-['Manrope']">VIEW WORK</button>
-              <button class="px-8 py-4 border border-zinc-200 text-zinc-900 text-xs font-bold tracking-widest uppercase font-['Manrope'] hover:bg-zinc-50 transition-colors">RESEARCH PROFILE</button>
+              <a href="#projects" class="px-8 py-4 bg-black text-white text-xs font-bold tracking-widest uppercase font-['Manrope'] inline-block">VIEW WORK</a>
+              <a href="#research" class="px-8 py-4 border border-zinc-200 text-zinc-900 text-xs font-bold tracking-widest uppercase font-['Manrope'] hover:bg-zinc-50 transition-colors inline-block">RESEARCH PROFILE</a>
             </div>
           </div>
           <div class="absolute right-[-10%] top-1/2 -translate-y-1/2 opacity-5 pointer-events-none">
@@ -62,7 +85,7 @@
       </section>
 
       <!-- Research Interests -->
-      <section class="py-32">
+      <section id="research" class="py-32">
         <div class="mb-16">
           <h2 class="text-zinc-900 text-4xl font-bold font-noto-serif mb-4">Research Interests</h2>
           <div class="w-24 h-1 bg-yellow-800"></div>
@@ -109,7 +132,7 @@
     </main>
 
     <!-- Core Expertise -->
-    <section class="bg-black py-32 text-white">
+    <section id="expertise" class="bg-black py-32 text-white">
       <div class="max-w-7xl mx-auto px-6 lg:px-24">
         <div class="mb-20">
           <h2 class="text-4xl font-bold font-noto-serif mb-4">Core Expertise</h2>
@@ -157,8 +180,42 @@
     </section>
 
     <main class="max-w-7xl mx-auto px-6 lg:px-24">
+      <!-- Teaching Experience -->
+      <section id="teaching" class="py-32 bg-zinc-100 -mx-6 lg:-mx-24 px-6 lg:px-24">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          <div class="lg:col-span-4 flex flex-col gap-6">
+            <h2 class="text-zinc-900 text-4xl font-bold font-noto-serif leading-tight">Teaching Experience</h2>
+            <p class="text-zinc-600 text-base leading-relaxed font-['Inter']">
+              During my tenure as a lecturer, I focused on making complex computational concepts accessible through practical, project-based learning. My pedagogy emphasizes the "why" behind the code.
+            </p>
+          </div>
+          <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-16">
+            <div class="flex flex-col gap-3">
+              <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">Database Systems</h3>
+              <span class="text-yellow-800 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">CORE INSTRUCTION</span>
+              <p class="text-zinc-600 text-sm leading-relaxed font-['Inter']">Modeling, SQL optimization, and NoSQL architectures for enterprise scale.</p>
+            </div>
+            <div class="flex flex-col gap-3">
+              <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">Programming Logic</h3>
+              <span class="text-yellow-800 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">FOUNDATIONAL INSTRUCTION</span>
+              <p class="text-zinc-600 text-sm leading-relaxed font-['Inter']">Algorithmic thinking and problem solving using C++, Java, and Python.</p>
+            </div>
+            <div class="flex flex-col gap-3">
+              <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">Data Structures</h3>
+              <span class="text-yellow-800 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">CORE INSTRUCTION</span>
+              <p class="text-zinc-600 text-sm leading-relaxed font-['Inter']">Analysis of linear and non-linear structures for efficient computation.</p>
+            </div>
+            <div class="flex flex-col gap-3">
+              <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">Operating Systems</h3>
+              <span class="text-yellow-800 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">ADVANCED INSTRUCTION</span>
+              <p class="text-zinc-600 text-sm leading-relaxed font-['Inter']">Process management, memory allocation, and kernel architectures.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Selected Projects -->
-      <section class="py-32">
+      <section id="projects" class="py-32">
         <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
           <div class="flex flex-col gap-4">
             <h2 class="text-zinc-900 text-4xl font-bold font-noto-serif">Selected Projects</h2>
@@ -205,40 +262,6 @@
                 <span class="px-3 py-1 bg-orange-100 text-yellow-800 text-[10px] font-bold uppercase rounded-full">PYTHON</span>
                 <span class="px-3 py-1 bg-orange-100 text-yellow-800 text-[10px] font-bold uppercase rounded-full">GRAFANA</span>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Teaching Experience -->
-      <section class="py-32 bg-zinc-100 -mx-6 lg:-mx-24 px-6 lg:px-24">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
-          <div class="lg:col-span-4 flex flex-col gap-6">
-            <h2 class="text-zinc-900 text-4xl font-bold font-noto-serif leading-tight">Teaching Experience</h2>
-            <p class="text-zinc-600 text-base leading-relaxed font-['Inter']">
-              During my tenure as a lecturer, I focused on making complex computational concepts accessible through practical, project-based learning. My pedagogy emphasizes the "why" behind the code.
-            </p>
-          </div>
-          <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-16">
-            <div class="flex flex-col gap-3">
-              <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">Database Systems</h3>
-              <span class="text-yellow-800 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">CORE INSTRUCTION</span>
-              <p class="text-zinc-600 text-sm leading-relaxed font-['Inter']">Modeling, SQL optimization, and NoSQL architectures for enterprise scale.</p>
-            </div>
-            <div class="flex flex-col gap-3">
-              <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">Programming Logic</h3>
-              <span class="text-yellow-800 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">FOUNDATIONAL INSTRUCTION</span>
-              <p class="text-zinc-600 text-sm leading-relaxed font-['Inter']">Algorithmic thinking and problem solving using C++, Java, and Python.</p>
-            </div>
-            <div class="flex flex-col gap-3">
-              <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">Data Structures</h3>
-              <span class="text-yellow-800 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">CORE INSTRUCTION</span>
-              <p class="text-zinc-600 text-sm leading-relaxed font-['Inter']">Analysis of linear and non-linear structures for efficient computation.</p>
-            </div>
-            <div class="flex flex-col gap-3">
-              <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">Operating Systems</h3>
-              <span class="text-yellow-800 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">ADVANCED INSTRUCTION</span>
-              <p class="text-zinc-600 text-sm leading-relaxed font-['Inter']">Process management, memory allocation, and kernel architectures.</p>
             </div>
           </div>
         </div>
@@ -330,31 +353,31 @@
             <div class="flex flex-col gap-6 font-['Inter']">
               <div class="flex items-center gap-4 text-zinc-900">
                 <span class="text-xl text-yellow-800">✉</span>
-                <span>jotham.hernandez@example.edu</span>
+                <span>jotham_hernandez@hotmail.com</span>
               </div>
               <div class="flex items-center gap-4 text-zinc-900">
                 <span class="text-xl text-yellow-800">🔗</span>
-                <span>linkedin.com/in/jothamh</span>
+                <span>linkedin.com/in/jothamhernandez</span>
               </div>
             </div>
           </div>
-          <div class="bg-white p-12 border border-zinc-100 shadow-sm font-['Inter']">
-            <form class="flex flex-col gap-8">
-              <div class="flex flex-col gap-2">
-                <label class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">NAME</label>
-                <input type="text" class="w-full bg-zinc-50 border-b border-zinc-200 py-3 focus:outline-none focus:border-black transition-colors" />
-              </div>
-              <div class="flex flex-col gap-2">
-                <label class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">EMAIL</label>
-                <input type="email" class="w-full bg-zinc-50 border-b border-zinc-200 py-3 focus:outline-none focus:border-black transition-colors" />
-              </div>
-              <div class="flex flex-col gap-2">
-                <label class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">INQUIRY</label>
-                <textarea rows="4" class="w-full bg-zinc-50 border-b border-zinc-200 py-3 focus:outline-none focus:border-black transition-colors resize-none"></textarea>
-              </div>
-              <button class="w-full py-4 bg-black text-white text-xs font-bold tracking-widest uppercase font-['Manrope']">SEND MESSAGE</button>
-            </form>
-          </div>
+<!--          <div class="bg-white p-12 border border-zinc-100 shadow-sm font-['Inter']">-->
+<!--            <form class="flex flex-col gap-8">-->
+<!--              <div class="flex flex-col gap-2">-->
+<!--                <label class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">NAME</label>-->
+<!--                <input type="text" class="w-full bg-zinc-50 border-b border-zinc-200 py-3 focus:outline-none focus:border-black transition-colors" />-->
+<!--              </div>-->
+<!--              <div class="flex flex-col gap-2">-->
+<!--                <label class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">EMAIL</label>-->
+<!--                <input type="email" class="w-full bg-zinc-50 border-b border-zinc-200 py-3 focus:outline-none focus:border-black transition-colors" />-->
+<!--              </div>-->
+<!--              <div class="flex flex-col gap-2">-->
+<!--                <label class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">INQUIRY</label>-->
+<!--                <textarea rows="4" class="w-full bg-zinc-50 border-b border-zinc-200 py-3 focus:outline-none focus:border-black transition-colors resize-none"></textarea>-->
+<!--              </div>-->
+<!--              <button class="w-full py-4 bg-black text-white text-xs font-bold tracking-widest uppercase font-['Manrope']">SEND MESSAGE</button>-->
+<!--            </form>-->
+<!--          </div>-->
         </div>
       </section>
     </main>
@@ -364,10 +387,10 @@
       <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
         <div class="text-zinc-900 text-lg font-bold font-noto-serif">Jotham Hernandez</div>
         <div class="flex flex-wrap justify-center gap-8 text-zinc-400 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">
-          <a href="#" class="hover:text-zinc-900 transition-colors">CURRICULUM VITAE</a>
-          <a href="#" class="hover:text-zinc-900 transition-colors">LINKEDIN</a>
-          <a href="#" class="hover:text-zinc-900 transition-colors">ORCID</a>
-          <a href="#" class="hover:text-zinc-900 transition-colors">GOOGLE SCHOLAR</a>
+<!--          <a href="#" class="hover:text-zinc-900 transition-colors">CURRICULUM VITAE</a>-->
+          <a href="https://www.linkedin.com/in/jothamhernandez" class="hover:text-zinc-900 transition-colors">LINKEDIN</a>
+          <a href="https://orcid.org/0009-0007-4090-6332" target="_blank" class="hover:text-zinc-900 transition-colors">ORCID</a>
+          <a href="https://scholar.google.com/citations?hl=en&user=lfh7S-UAAAAJ" class="hover:text-zinc-900 transition-colors">GOOGLE SCHOLAR</a>
         </div>
         <div class="text-zinc-400 text-[10px] font-bold tracking-widest font-['Manrope']">
           © 2024 JOTHAM HERNANDEZ. ALL INTELLECTUAL RIGHTS RESERVED.
