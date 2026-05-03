@@ -34,23 +34,6 @@
     "featured": true
   },
   {
-    "id": "worldskills-ph-web",
-    "title": "WorldSkills Philippines Website",
-    "type": "Institutional Project",
-    "status": "Completed",
-    "year": "2020",
-    "role": "Lead Developer",
-    "shortDescription": "Official platform for WorldSkills Philippines competitions and information.",
-    "longDescription": "Built a robust, accessible, and high-performance website to manage competition registrations, news, and resources for the national skills competition.",
-    "technologyStack": ["Vue.js", "PHP", "Laravel", "MySQL"],
-    "impact": "Streamlined registration for thousands of participants and improved public access to competition information.",
-    "image": "https://placehold.co/1200x800",
-    "liveUrl": "https://worldskills.ph",
-    "repositoryUrl": "",
-    "tags": ["Web Development", "Institutional", "Public Sector"],
-    "featured": true
-  },
-  {
     "id": "tabulation-systems",
     "title": "Event Tabulation Systems",
     "type": "Commercial Project",

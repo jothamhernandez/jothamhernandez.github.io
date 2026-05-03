@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, computed } from 'vue'
+import { onMounted, computed, ref } from 'vue'
 import Lenis from 'lenis'
 
 // Import data
@@ -17,7 +17,17 @@ import writings from '../data/writings.json'
 import contact from '../data/contact.json'
 import seo from '../data/seo.json'
 
+const isMenuOpen = ref(false)
+const showScrollTop = ref(false)
 const currentYear = computed(() => new Date().getFullYear())
+
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value
+}
+
+const closeMenu = () => {
+  isMenuOpen.value = false
+}
 
 // SEO Meta
 useHead({
@@ -60,15 +70,35 @@ useHead({
   ]
 })
 
+let lenis: Lenis | null = null
+
+const scrollToTop = () => {
+  if (lenis) {
+    lenis.scrollTo(0)
+  }
+}
+
 onMounted(() => {
-  const lenis = new Lenis()
+  lenis = new Lenis()
 
   function raf(time: number) {
-    lenis.raf(time)
+    lenis?.raf(time)
     requestAnimationFrame(raf)
   }
 
   requestAnimationFrame(raf)
+
+  // Track scroll position for "Back to Top" button
+  const handleScroll = () => {
+    showScrollTop.value = window.scrollY > 500
+  }
+
+  window.addEventListener('scroll', handleScroll)
+  
+  lenis.on('scroll', (e: any) => {
+    // Sync with Lenis scroll as well for consistency
+    showScrollTop.value = e.scroll > 500
+  })
 
   // Handle anchor link clicks for smooth scrolling
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -88,13 +118,34 @@ onMounted(() => {
     <!-- Navigation -->
     <nav class="sticky top-0 z-50 w-full px-8 py-4 bg-white/80 backdrop-blur-md border-b border-gray-100 flex justify-between items-center">
       <div class="text-zinc-900 text-xl font-bold font-noto-serif">{{ profile.name }}</div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button @click="toggleMenu" class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 z-[70] focus:outline-none" aria-label="Toggle Menu">
+        <span :class="['w-6 h-0.5 bg-zinc-900 block transition-all duration-300', isMenuOpen ? 'rotate-45 translate-y-2' : '']"></span>
+        <span :class="['w-6 h-0.5 bg-zinc-900 block transition-opacity duration-300', isMenuOpen ? 'opacity-0' : '']"></span>
+        <span :class="['w-6 h-0.5 bg-zinc-900 block transition-all duration-300', isMenuOpen ? '-rotate-45 -translate-y-2' : '']"></span>
+      </button>
+
+      <!-- Desktop Navigation -->
       <div class="hidden md:flex gap-8 items-center font-noto-serif">
         <a href="#research" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Research</a>
         <a href="#experience" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Experience</a>
         <a href="#expertise" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Expertise</a>
         <a href="#projects" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Projects</a>
+        <a href="#education" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Education</a>
         <a href="#writings" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Writings</a>
         <a href="#contact" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Contact</a>
+      </div>
+
+      <!-- Mobile Navigation Overlay -->
+      <div :class="['fixed inset-0 bg-white z-[60] h-[100vh] flex flex-col items-center justify-start gap-8 transition-transform duration-500 md:hidden pt-24 pb-12', isMenuOpen ? 'translate-x-0' : 'translate-x-full']">
+        <a href="#research" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Research</a>
+        <a href="#experience" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Experience</a>
+        <a href="#expertise" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Expertise</a>
+        <a href="#projects" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Projects</a>
+        <a href="#education" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Education</a>
+        <a href="#writings" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Writings</a>
+        <a href="#contact" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Contact</a>
       </div>
     </nav>
 
@@ -107,9 +158,9 @@ onMounted(() => {
             <h1 class="text-zinc-900 text-6xl lg:text-7xl font-bold font-noto-serif leading-[1.1]">
               {{ hero.headline }}
             </h1>
-            <p class="text-zinc-600 text-2xl lg:text-3xl font-normal font-noto-serif leading-relaxed max-w-2xl">
+            <h2 class="text-zinc-600 text-2xl lg:text-3xl font-normal font-noto-serif leading-relaxed max-w-2xl">
               {{ hero.subtitle }}
-            </p>
+            </h2>
             <p class="text-zinc-500 text-lg max-w-xl font-['Inter']">
               {{ hero.summary }}
             </p>
@@ -164,30 +215,28 @@ onMounted(() => {
           </div>
         </div>
       </section>
-    </main>
 
-    <!-- Core Expertise -->
-    <section id="expertise" class="bg-black py-32 text-white">
-      <div class="max-w-7xl mx-auto px-6 lg:px-24">
-        <div class="mb-20">
-          <h2 class="text-4xl font-bold font-noto-serif mb-4">Technical Expertise</h2>
-          <span class="text-zinc-500 text-xs font-medium tracking-widest uppercase font-['Manrope']">TECHNICAL COMPETENCIES & PROFESSIONAL DOMAINS</span>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-x-16 lg:gap-y-20">
-          <div v-for="skillGroup in skills" :key="skillGroup.id" class="pl-6 border-l-2 border-orange-200 flex flex-col gap-4">
-            <h3 class="text-xl font-bold font-noto-serif">{{ skillGroup.category }}</h3>
-            <p class="text-zinc-500 text-sm leading-relaxed font-['Inter']">
-              {{ skillGroup.description }}
-            </p>
-            <div class="flex flex-wrap gap-2 mt-2">
-              <span v-for="skill in skillGroup.skills" :key="skill" class="px-2 py-1 bg-zinc-900 text-zinc-400 text-[10px] font-bold uppercase rounded border border-zinc-800">{{ skill }}</span>
+      <!-- Core Expertise -->
+      <section id="expertise" class="bg-black py-32 text-white -mx-6 lg:-mx-24 px-6 lg:px-24 mb-32">
+        <div class="max-w-7xl mx-auto">
+          <div class="mb-20">
+            <h2 class="text-4xl font-bold font-noto-serif mb-4">Technical Expertise</h2>
+            <span class="text-zinc-500 text-xs font-medium tracking-widest uppercase font-['Manrope']">TECHNICAL COMPETENCIES & PROFESSIONAL DOMAINS</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-x-16 lg:gap-y-20">
+            <div v-for="skillGroup in skills" :key="skillGroup.id" class="pl-6 border-l-2 border-orange-200 flex flex-col gap-4">
+              <h3 class="text-xl font-bold font-noto-serif">{{ skillGroup.category }}</h3>
+              <p class="text-zinc-500 text-sm leading-relaxed font-['Inter']">
+                {{ skillGroup.description }}
+              </p>
+              <div class="flex flex-wrap gap-2 mt-2">
+                <span v-for="skill in skillGroup.skills" :key="skill" class="px-2 py-1 bg-zinc-900 text-zinc-400 text-[10px] font-bold uppercase rounded border border-zinc-800">{{ skill }}</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <main class="max-w-7xl mx-auto px-6 lg:px-24">
       <!-- Professional Experience -->
       <section id="experience" class="py-32 bg-zinc-100 -mx-6 lg:-mx-24 px-6 lg:px-24">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
@@ -372,11 +421,11 @@ onMounted(() => {
               </p>
             </div>
             <div class="flex flex-col gap-6 font-['Inter']">
-              <div class="flex items-center gap-4 text-zinc-900">
+              <div class="flex items-center gap-4 text-zinc-900" v-if="contact.email">
                 <span class="text-xl text-yellow-800">✉</span>
                 <a :href="'mailto:' + contact.email" class="hover:text-yellow-800 transition-colors">{{ contact.email }}</a>
               </div>
-              <div class="flex items-center gap-4 text-zinc-900">
+              <div class="flex items-center gap-4 text-zinc-900" v-if="contact.linkedin">
                 <span class="text-xl text-yellow-800">🔗</span>
                 <a :href="contact.linkedin" target="_blank" class="hover:text-yellow-800 transition-colors">LinkedIn Profile</a>
               </div>
@@ -421,6 +470,15 @@ onMounted(() => {
         </div>
       </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button 
+      @click="scrollToTop" 
+      :class="['fixed bottom-10 right-10 z-[100] w-14 h-14 bg-black text-white flex items-center justify-center shadow-2xl transition-all duration-500 hover:bg-zinc-800 focus:outline-none rounded-full', showScrollTop ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-10 pointer-events-none']"
+      aria-label="Back to Top"
+    >
+      <span class="text-2xl">↑</span>
+    </button>
   </div>
 </template>
 
