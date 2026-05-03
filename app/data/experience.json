@@ -1,0 +1,92 @@
+[
+  {
+    "role": "Information Technology Officer I",
+    "organization": "TESDA",
+    "location": "Philippines",
+    "startDate": "2023",
+    "endDate": "Present",
+    "isCurrent": true,
+    "summary": "Leading ICT initiatives and digital transformation projects within the national vocational education and training authority.",
+    "highlights": [
+      "Optimizing institutional ICT infrastructure and cloud services.",
+      "Developing and managing national-level digital government systems.",
+      "Implementing AI-enabled solutions for labor-market intelligence."
+    ],
+    "technologies": ["Cloud Infrastructure", "Digital Government", "ICT Policy"]
+  },
+  {
+    "role": "WorldSkills Philippines Web Expert",
+    "organization": "TESDA",
+    "location": "Philippines",
+    "startDate": "2019",
+    "endDate": "Present",
+    "isCurrent": true,
+    "summary": "Representing and coaching the national team for international web development competitions.",
+    "highlights": [
+      "Mentoring competitors in advanced web technologies and industry standards.",
+      "Contributing to the development of national competition standards for web design and development.",
+      "Representing the Philippines in WorldSkills international forums and competitions."
+    ],
+    "technologies": ["Web Development", "Pedagogy", "Standards Development"]
+  },
+  {
+    "role": "Technical Specialist",
+    "organization": "TESDA",
+    "location": "Philippines",
+    "startDate": "2021",
+    "endDate": "2023",
+    "isCurrent": false,
+    "summary": "Provided technical expertise for institutional software and hardware systems.",
+    "highlights": [
+      "Managed and maintained critical server infrastructure and networking systems.",
+      "Supported the development and deployment of internal web applications.",
+      "Provided high-level troubleshooting and technical support for TESDA's ICT ecosystem."
+    ],
+    "technologies": ["System Administration", "Network Security", "Technical Support"]
+  },
+  {
+    "role": "Senior Web Developer",
+    "organization": "Various Projects",
+    "location": "Remote",
+    "startDate": "2017",
+    "endDate": "2021",
+    "isCurrent": false,
+    "summary": "Led the development of high-impact web systems and tabulation platforms for various organizations.",
+    "highlights": [
+      "Architected and developed real-time tabulation systems for major international and local events.",
+      "Built responsive, high-performance web applications using modern JavaScript frameworks.",
+      "Managed end-to-end development cycles from requirement gathering to deployment and maintenance."
+    ],
+    "technologies": ["Vue.js", "PHP", "MySQL", "Real-time Systems"]
+  },
+  {
+    "role": "IT Lecturer / Jr. IT Specialist",
+    "organization": "Educational Institution",
+    "location": "Philippines",
+    "startDate": "2015",
+    "endDate": "2017",
+    "isCurrent": false,
+    "summary": "Delivered technical instruction and supported campus-wide ICT operations.",
+    "highlights": [
+      "Lectured on core computer science subjects including Database Systems, Programming Logic, and Operating Systems.",
+      "Developed curriculum materials and practical lab exercises for IT students.",
+      "Assisted in the management of campus computer laboratories and network infrastructure."
+    ],
+    "technologies": ["Java", "C++", "Database Management", "OS Concepts"]
+  },
+  {
+    "role": "Software Development Intern",
+    "organization": "Microsoft",
+    "location": "Philippines",
+    "startDate": "2014",
+    "endDate": "2015",
+    "isCurrent": false,
+    "summary": "Gained early professional experience in software development and industry practices.",
+    "highlights": [
+      "Collaborated with development teams on internal tools and project prototypes.",
+      "Participated in agile development processes and technical reviews.",
+      "Contributed to front-end development using Microsoft technologies."
+    ],
+    "technologies": ["C#", ".NET", "Front-end Development"]
+  }
+]

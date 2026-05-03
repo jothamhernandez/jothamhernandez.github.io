@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Digital Government and AI Readiness",
+    "type": "Working Paper",
+    "status": "In Progress",
+    "description": "An analysis of the policy and technical requirements for AI integration in public-sector institutions.",
+    "year": "2025",
+    "url": "",
+    "tags": ["Digital Government", "AI Readiness", "Public Policy"]
+  },
+  {
+    "title": "Hybrid RAG and Knowledge Graph Systems",
+    "type": "Research Note",
+    "status": "In Progress",
+    "description": "Exploring the synergy between vector-based retrieval and structured knowledge representation for explainable AI.",
+    "year": "2026",
+    "url": "",
+    "tags": ["RAG", "Knowledge Graph", "Explainable AI"]
+  },
+  {
+    "title": "ICT Infrastructure and Public-Sector Systems",
+    "type": "Case Study",
+    "status": "Concept",
+    "description": "A review of modern cloud-native architectures for government service delivery in developing nations.",
+    "year": "2025",
+    "url": "",
+    "tags": ["Cloud Infrastructure", "Public Sector", "Digital Transformation"]
+  }
+]

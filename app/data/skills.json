@@ -1,0 +1,38 @@
+[
+  {
+    "id": "cloud-infrastructure",
+    "category": "Cloud and Infrastructure",
+    "description": "Expertise in managing cloud services, system architecture, and public-sector ICT infrastructure.",
+    "skills": ["AWS", "Azure", "Linux", "NGINX", "Docker", "Kubernetes", "CI/CD Pipelines"]
+  },
+  {
+    "id": "web-api-development",
+    "category": "Web and API Development",
+    "description": "Full-stack development with a focus on scalable architectures and secure data exchange.",
+    "skills": ["Vue.js", "Nuxt.js", "PHP (Laravel)", "Python (Django/Flask)", "RESTful APIs", "GraphQL"]
+  },
+  {
+    "id": "networking-security",
+    "category": "Networking and Security",
+    "description": "Design and management of secure, resilient campus and enterprise networks.",
+    "skills": ["Cisco Networking", "LAN/WAN", "Firewalls", "Network Security Protocols", "VLAN Configuration"]
+  },
+  {
+    "id": "database-systems",
+    "category": "Database and Systems Architecture",
+    "description": "Designing and optimizing data storage solutions for high-performance applications.",
+    "skills": ["MySQL/MariaDB", "PostgreSQL", "Neo4j", "Redis", "Data Modeling", "SQL Optimization"]
+  },
+  {
+    "id": "ai-data-research",
+    "category": "AI, Data, and Research Systems",
+    "description": "Integrating artificial intelligence and data analytics into institutional workflows.",
+    "skills": ["RAG Systems", "Knowledge Graphs", "Vector Databases", "Python for Data Science", "Learning Analytics"]
+  },
+  {
+    "id": "teaching-training",
+    "category": "Teaching and Technical Training",
+    "description": "Professional education and mentoring in computer science and ICT competencies.",
+    "skills": ["Curriculum Development", "Technical Mentoring", "Public Speaking", "Instructional Design"]
+  }
+]

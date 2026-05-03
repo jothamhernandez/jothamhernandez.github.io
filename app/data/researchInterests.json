@@ -1,0 +1,37 @@
+[
+  {
+    "id": "hybrid-rag",
+    "title": "Retrieval-Augmented Generation and Knowledge Graphs",
+    "description": "Researching hybrid retrieval methods that combine semantic search with graph-based reasoning for more explainable and context-aware AI systems.",
+    "icon": "AI",
+    "tags": ["RAG", "Knowledge Graph", "AI", "Information Retrieval"]
+  },
+  {
+    "id": "digital-gov",
+    "title": "Digital Government and ICT Policy",
+    "description": "Investigating policy frameworks and technical implementations that drive efficient, transparent, and inclusive digital public services.",
+    "icon": "Gov",
+    "tags": ["Digital Transformation", "ICT Policy", "Governance"]
+  },
+  {
+    "id": "skills-intelligence",
+    "title": "Labor-Market and Skills Intelligence Systems",
+    "description": "Developing data-driven models for mapping and analyzing the evolving landscape of workforce skills and occupational requirements.",
+    "icon": "Skills",
+    "tags": ["Labor Market", "Skills Mapping", "Data Analytics"]
+  },
+  {
+    "id": "cloud-public-sector",
+    "title": "Cloud Infrastructure and Public-Sector Systems",
+    "description": "Researching scalable, secure, and cost-effective cloud-native architectures tailored for government and institutional operations.",
+    "icon": "Cloud",
+    "tags": ["Cloud Native", "Infrastructure", "Public Sector"]
+  },
+  {
+    "id": "hci-learning-analytics",
+    "title": "Human-Computer Interaction / XR and Learning Analytics",
+    "description": "Exploring immersive technologies and data analytics to enhance educational experiences and understand learner behavior.",
+    "icon": "XR",
+    "tags": ["HCI", "XR", "EdTech", "Analytics"]
+  }
+]

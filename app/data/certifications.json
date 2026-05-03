@@ -1,0 +1,23 @@
+[
+  {
+    "title": "AWS Certified Cloud Practitioner",
+    "issuer": "Amazon Web Services",
+    "year": "2023",
+    "credentialUrl": "",
+    "description": "Validation of overall understanding of the AWS Cloud platform."
+  },
+  {
+    "title": "Using Python to Access Web Data",
+    "issuer": "University of Michigan (Coursera)",
+    "year": "2022",
+    "credentialUrl": "",
+    "description": "Advanced Python programming for web scraping and API interaction."
+  },
+  {
+    "title": "ThriveDX Cybersecurity Bootcamp",
+    "issuer": "ThriveDX",
+    "year": "2023",
+    "credentialUrl": "",
+    "description": "Intensive training in network security, threat detection, and incident response."
+  }
+]
