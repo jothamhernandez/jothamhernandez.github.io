@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Landing from './components/Landing.vue'
 
 useHead({
   script: [
@@ -24,7 +23,6 @@ useHead({
 <template>
   <div>
     <NuxtRouteAnnouncer />
-    <Landing />
-<!--    <NuxtWelcome />-->
+    <NuxtPage />
   </div>
 </template>

@@ -103,10 +103,10 @@ onMounted(() => {
   // Handle anchor link clicks for smooth scrolling
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e: Event) => {
-      e.preventDefault()
       const targetId = (anchor as HTMLAnchorElement).getAttribute('href')
-      if (targetId && targetId !== '#') {
-        lenis.scrollTo(targetId)
+      if (targetId && targetId.startsWith('#') && targetId !== '#') {
+        e.preventDefault()
+        lenis?.scrollTo(targetId)
       }
     })
   })
@@ -464,6 +464,7 @@ onMounted(() => {
           <a :href="profile.linkedin" target="_blank" class="hover:text-zinc-900 transition-colors">LINKEDIN</a>
           <a :href="profile.orcid" target="_blank" class="hover:text-zinc-900 transition-colors">ORCID</a>
           <a :href="profile.googleScholar" target="_blank" class="hover:text-zinc-900 transition-colors">GOOGLE SCHOLAR</a>
+          <NuxtLink to="/privacy" class="hover:text-zinc-900 transition-colors">PRIVACY POLICY</NuxtLink>
         </div>
         <div class="text-zinc-400 text-[10px] font-bold tracking-widest font-['Manrope'] uppercase">
           © {{ currentYear }} {{ profile.name }}. ALL INTELLECTUAL RIGHTS RESERVED.
@@ -483,5 +484,4 @@ onMounted(() => {
 </template>
 
 <style scoped>
-
 </style>
