@@ -179,7 +179,7 @@ onMounted(() => {
 
       <!-- About Section -->
       <section class="py-24 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start bg-zinc-100 -mx-6 lg:-mx-24 px-6 lg:px-24">
-        <div class="lg:col-span-4 aspect-[4/5] bg-zinc-200 overflow-hidden rounded-sm grayscale" v-if="about.image">
+        <div class="lg:col-span-4 aspect-[4/5] bg-zinc-200 overflow-hidden rounded-sm" v-if="about.image">
           <img :src="about.image" alt="Profile" class="w-full h-full object-cover opacity-90" />
         </div>
         <div class="lg:col-span-8 flex flex-col gap-8">
