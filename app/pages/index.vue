@@ -216,27 +216,6 @@ onMounted(() => {
         </div>
       </section>
 
-      <!-- Core Expertise -->
-      <section id="expertise" class="bg-black py-32 text-white -mx-6 lg:-mx-24 px-6 lg:px-24 mb-32">
-        <div class="max-w-7xl mx-auto">
-          <div class="mb-20">
-            <h2 class="text-4xl font-bold font-noto-serif mb-4">Technical Expertise</h2>
-            <span class="text-zinc-500 text-xs font-medium tracking-widest uppercase font-['Manrope']">TECHNICAL COMPETENCIES & PROFESSIONAL DOMAINS</span>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-x-16 lg:gap-y-20">
-            <div v-for="skillGroup in skills" :key="skillGroup.id" class="pl-6 border-l-2 border-orange-200 flex flex-col gap-4">
-              <h3 class="text-xl font-bold font-noto-serif">{{ skillGroup.category }}</h3>
-              <p class="text-zinc-500 text-sm leading-relaxed font-['Inter']">
-                {{ skillGroup.description }}
-              </p>
-              <div class="flex flex-wrap gap-2 mt-2">
-                <span v-for="skill in skillGroup.skills" :key="skill" class="px-2 py-1 bg-zinc-900 text-zinc-400 text-[10px] font-bold uppercase rounded border border-zinc-800">{{ skill }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- Professional Experience -->
       <section id="experience" class="py-32 bg-zinc-100 -mx-6 lg:-mx-24 px-6 lg:px-24">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
@@ -273,6 +252,27 @@ onMounted(() => {
                 <span v-for="tech in job.technologies" :key="tech" class="px-2 py-1 bg-white text-zinc-400 text-[9px] font-bold uppercase rounded border border-zinc-200">
                   {{ tech }}
                 </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Core Expertise -->
+      <section id="expertise" class="bg-black py-32 text-white -mx-6 lg:-mx-24 px-6 lg:px-24 mb-32">
+        <div class="max-w-7xl mx-auto">
+          <div class="mb-20">
+            <h2 class="text-4xl font-bold font-noto-serif mb-4">Technical Expertise</h2>
+            <span class="text-zinc-500 text-xs font-medium tracking-widest uppercase font-['Manrope']">TECHNICAL COMPETENCIES & PROFESSIONAL DOMAINS</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-x-16 lg:gap-y-20">
+            <div v-for="skillGroup in skills" :key="skillGroup.id" class="pl-6 border-l-2 border-orange-200 flex flex-col gap-4">
+              <h3 class="text-xl font-bold font-noto-serif">{{ skillGroup.category }}</h3>
+              <p class="text-zinc-500 text-sm leading-relaxed font-['Inter']">
+                {{ skillGroup.description }}
+              </p>
+              <div class="flex flex-wrap gap-2 mt-2">
+                <span v-for="skill in skillGroup.skills" :key="skill" class="px-2 py-1 bg-zinc-900 text-zinc-400 text-[10px] font-bold uppercase rounded border border-zinc-800">{{ skill }}</span>
               </div>
             </div>
           </div>
