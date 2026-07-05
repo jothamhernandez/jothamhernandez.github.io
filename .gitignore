@@ -18,6 +18,9 @@ logs
 .fleet
 .idea
 
+# Machine-local Claude Code preview config (contains absolute node path)
+.claude/launch.json
+
 # Local env files
 .env
 .env.*

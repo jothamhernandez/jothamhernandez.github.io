@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Hybrid RAG and Knowledge Graph Systems for Explainable AI",
+    "authors": "J. Hernandez",
+    "venue": "Manuscript in preparation",
+    "type": "Research Note",
+    "status": "In Progress",
+    "year": "2026",
+    "doi": "",
+    "url": "",
+    "description": "Exploring the synergy between vector-based retrieval and structured knowledge representation for explainable, context-aware AI systems.",
+    "tags": ["RAG", "Knowledge Graph", "Explainable AI"]
+  },
+  {
+    "title": "Digital Government and AI Readiness in Public-Sector Institutions",
+    "authors": "J. Hernandez",
+    "venue": "Working Paper",
+    "type": "Working Paper",
+    "status": "In Progress",
+    "year": "2025",
+    "doi": "",
+    "url": "",
+    "description": "An analysis of the policy and technical requirements for AI integration in public-sector institutions.",
+    "tags": ["Digital Government", "AI Readiness", "Public Policy"]
+  },
+  {
+    "title": "ICT Infrastructure and Public-Sector Systems in Developing Nations",
+    "authors": "J. Hernandez",
+    "venue": "Case study",
+    "type": "Case Study",
+    "status": "Concept",
+    "year": "2025",
+    "doi": "",
+    "url": "",
+    "description": "A review of modern cloud-native architectures for government service delivery in developing nations.",
+    "tags": ["Cloud Infrastructure", "Public Sector", "Digital Transformation"]
+  }
+]

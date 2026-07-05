@@ -13,7 +13,7 @@ import projects from '../data/projects.json'
 import education from '../data/education.json'
 import certifications from '../data/certifications.json'
 import awards from '../data/awards.json'
-import writings from '../data/writings.json'
+import publications from '../data/publications.json'
 import contact from '../data/contact.json'
 import seo from '../data/seo.json'
 
@@ -27,6 +27,25 @@ const toggleMenu = () => {
 
 const closeMenu = () => {
   isMenuOpen.value = false
+}
+
+// Structured data (schema.org Person) — built from the same JSON the page renders,
+// so it stays in sync with the visible content and enriches search/AI results.
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.name,
+  jobTitle: profile.currentRole,
+  url: seo.canonicalUrl,
+  image: seo.ogImage,
+  email: contact.email ? 'mailto:' + contact.email : undefined,
+  worksFor: {
+    '@type': 'Organization',
+    name: 'TESDA — Technical Education and Skills Development Authority'
+  },
+  alumniOf: education.map((e) => ({ '@type': 'CollegeOrUniversity', name: e.institution })),
+  knowsAbout: researchInterests.map((r) => r.title),
+  sameAs: [profile.linkedin, profile.orcid, profile.googleScholar]
 }
 
 // SEO Meta
@@ -54,18 +73,7 @@ useHead({
   script: [
     {
       type: 'application/ld+json',
-      children: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": profile.name,
-        "jobTitle": profile.currentRole,
-        "url": seo.canonicalUrl,
-        "sameAs": [
-          profile.linkedin,
-          profile.orcid,
-          profile.googleScholar
-        ]
-      })
+      children: JSON.stringify(structuredData)
     }
   ]
 })
@@ -94,7 +102,7 @@ onMounted(() => {
   }
 
   window.addEventListener('scroll', handleScroll)
-  
+
   lenis.on('scroll', (e: any) => {
     // Sync with Lenis scroll as well for consistency
     showScrollTop.value = e.scroll > 500
@@ -118,9 +126,9 @@ onMounted(() => {
     <!-- Navigation -->
     <nav class="sticky top-0 z-50 w-full px-8 py-4 bg-white/80 backdrop-blur-md border-b border-gray-100 flex justify-between items-center">
       <div class="text-zinc-900 text-xl font-bold font-noto-serif">{{ profile.name }}</div>
-      
+
       <!-- Mobile Menu Toggle -->
-      <button @click="toggleMenu" class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 z-[70] focus:outline-none" aria-label="Toggle Menu">
+      <button @click="toggleMenu" :aria-expanded="isMenuOpen" class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 z-[70] focus-visible:outline-2 focus-visible:outline-yellow-800 focus-visible:outline-offset-2" aria-label="Toggle Menu">
         <span :class="['w-6 h-0.5 bg-zinc-900 block transition-all duration-300', isMenuOpen ? 'rotate-45 translate-y-2' : '']"></span>
         <span :class="['w-6 h-0.5 bg-zinc-900 block transition-opacity duration-300', isMenuOpen ? 'opacity-0' : '']"></span>
         <span :class="['w-6 h-0.5 bg-zinc-900 block transition-all duration-300', isMenuOpen ? '-rotate-45 -translate-y-2' : '']"></span>
@@ -129,22 +137,22 @@ onMounted(() => {
       <!-- Desktop Navigation -->
       <div class="hidden md:flex gap-8 items-center font-noto-serif">
         <a href="#research" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Research</a>
+        <a href="#publications" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Publications</a>
+        <a href="#projects" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Projects</a>
         <a href="#experience" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Experience</a>
         <a href="#expertise" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Expertise</a>
-        <a href="#projects" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Projects</a>
         <a href="#education" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Education</a>
-        <a href="#writings" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Writings</a>
         <a href="#contact" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Contact</a>
       </div>
 
       <!-- Mobile Navigation Overlay -->
       <div :class="['fixed inset-0 bg-white z-[60] h-[100vh] flex flex-col items-center justify-start gap-8 transition-transform duration-500 md:hidden pt-24 pb-12', isMenuOpen ? 'translate-x-0' : 'translate-x-full']">
         <a href="#research" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Research</a>
+        <a href="#publications" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Publications</a>
+        <a href="#projects" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Projects</a>
         <a href="#experience" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Experience</a>
         <a href="#expertise" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Expertise</a>
-        <a href="#projects" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Projects</a>
         <a href="#education" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Education</a>
-        <a href="#writings" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Writings</a>
         <a href="#contact" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Contact</a>
       </div>
     </nav>
@@ -155,6 +163,10 @@ onMounted(() => {
         <div class="w-full grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
           <div class="flex flex-col gap-6 z-10">
             <span class="text-yellow-800 text-sm font-bold tracking-[0.3em] uppercase font-['Manrope']">PORTFOLIO & ACADEMIC RECORD</span>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-orange-100 text-yellow-800 text-[10px] font-bold uppercase tracking-widest rounded-full font-['Manrope']">WorldSkills PH · Web Expert</span>
+              <span class="px-3 py-1 bg-zinc-100 text-zinc-600 text-[10px] font-bold uppercase tracking-widest rounded-full font-['Manrope']">Graduate Researcher · Handong</span>
+            </div>
             <h1 class="text-zinc-900 text-6xl lg:text-7xl font-bold font-noto-serif leading-[1.1]">
               {{ hero.headline }}
             </h1>
@@ -164,12 +176,18 @@ onMounted(() => {
             <p class="text-zinc-500 text-lg max-w-xl font-['Inter']">
               {{ hero.summary }}
             </p>
-            <div class="flex gap-4 pt-4">
+            <div class="flex flex-wrap gap-4 pt-4">
               <a :href="hero.primaryCta.url" class="px-8 py-4 bg-black text-white text-xs font-bold tracking-widest uppercase font-['Manrope'] inline-block">{{ hero.primaryCta.text }}</a>
               <a :href="hero.secondaryCta.url" class="px-8 py-4 border border-zinc-200 text-zinc-900 text-xs font-bold tracking-widest uppercase font-['Manrope'] hover:bg-zinc-50 transition-colors inline-block">{{ hero.secondaryCta.text }}</a>
+              <NuxtLink v-if="hero.cvUrl" :to="hero.cvUrl" class="px-8 py-4 border border-zinc-200 text-zinc-900 text-xs font-bold tracking-widest uppercase font-['Manrope'] hover:bg-zinc-50 transition-colors inline-block">View CV</NuxtLink>
+            </div>
+            <div class="flex flex-wrap items-center gap-6 pt-2 font-['Manrope']">
+              <a :href="profile.googleScholar" target="_blank" rel="noopener" class="text-zinc-500 text-[11px] font-bold tracking-widest uppercase hover:text-yellow-800 transition-colors">Google Scholar</a>
+              <a :href="profile.orcid" target="_blank" rel="noopener" class="text-zinc-500 text-[11px] font-bold tracking-widest uppercase hover:text-yellow-800 transition-colors">ORCID</a>
+              <a :href="profile.linkedin" target="_blank" rel="noopener" class="text-zinc-500 text-[11px] font-bold tracking-widest uppercase hover:text-yellow-800 transition-colors">LinkedIn</a>
             </div>
           </div>
-          <div class="absolute right-[-10%] top-1/2 -translate-y-1/2 opacity-5 pointer-events-none">
+          <div class="absolute right-[-10%] top-1/2 -translate-y-1/2 opacity-5 pointer-events-none" aria-hidden="true">
             <div class="w-[600px] h-[600px] border border-zinc-900 flex items-center justify-center">
               <div class="w-[450px] h-[450px] border border-zinc-900 rotate-45"></div>
             </div>
@@ -180,7 +198,7 @@ onMounted(() => {
       <!-- About Section -->
       <section class="py-24 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start bg-zinc-100 -mx-6 lg:-mx-24 px-6 lg:px-24">
         <div class="lg:col-span-4 aspect-[4/5] bg-zinc-200 overflow-hidden rounded-sm" v-if="about.image">
-          <img :src="about.image" alt="Profile" class="w-full h-full object-cover opacity-90" />
+          <img :src="about.image" alt="Portrait of Jotham Hernandez" class="w-full h-full object-cover opacity-90" />
         </div>
         <div class="lg:col-span-8 flex flex-col gap-8">
           <h2 class="text-zinc-900 text-3xl lg:text-4xl font-bold font-noto-serif leading-tight">
@@ -202,7 +220,7 @@ onMounted(() => {
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div v-for="interest in researchInterests" :key="interest.id" class="p-10 bg-white border border-zinc-100 shadow-sm flex flex-col gap-6">
-            <div class="w-10 h-10 flex items-center justify-center text-yellow-800 bg-orange-50 rounded-full font-bold">
+            <div class="w-10 h-10 flex items-center justify-center text-yellow-800 bg-orange-50 rounded-full font-bold" aria-hidden="true">
               {{ interest.icon }}
             </div>
             <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">{{ interest.title }}</h3>
@@ -211,6 +229,81 @@ onMounted(() => {
             </p>
             <div class="flex flex-wrap gap-2 mt-auto">
               <span v-for="tag in interest.tags" :key="tag" class="text-[10px] text-zinc-400 uppercase tracking-widest font-bold">#{{ tag }}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Publications & Research Writing -->
+      <section id="publications" class="py-32 bg-zinc-100 -mx-6 lg:-mx-24 px-6 lg:px-24">
+        <div class="mb-16">
+          <h2 class="text-zinc-900 text-4xl font-bold font-noto-serif mb-4">Publications & Research Writing</h2>
+          <div class="w-24 h-1 bg-yellow-800"></div>
+        </div>
+        <div class="flex flex-col border-t border-zinc-200">
+          <article v-for="(pub, index) in publications" :key="index" class="py-8 border-b border-zinc-200 flex flex-col md:flex-row gap-6 md:gap-10 group">
+            <div class="md:w-28 shrink-0 flex md:flex-col gap-3 md:gap-2 items-center md:items-start">
+              <span class="text-yellow-800 text-3xl font-bold font-noto-serif tabular-nums">{{ pub.year }}</span>
+              <span class="px-2 py-1 bg-white border border-zinc-200 text-zinc-500 text-[9px] font-bold uppercase rounded tracking-widest">{{ pub.type }}</span>
+            </div>
+            <div class="flex flex-col gap-3 flex-1">
+              <h3 class="text-zinc-900 text-xl font-bold font-noto-serif leading-tight group-hover:text-yellow-800 transition-colors">{{ pub.title }}</h3>
+              <p v-if="pub.authors || pub.venue" class="text-zinc-500 text-sm font-['Inter'] italic">
+                <span v-if="pub.authors">{{ pub.authors }}</span><span v-if="pub.authors && pub.venue"> · </span><span v-if="pub.venue">{{ pub.venue }}</span>
+              </p>
+              <p class="text-zinc-600 text-sm leading-relaxed font-['Inter']">
+                {{ pub.description }}
+              </p>
+              <div class="flex flex-wrap items-center gap-4 mt-1">
+                <span class="text-zinc-400 text-[10px] font-bold uppercase tracking-widest">{{ pub.status }}</span>
+                <a v-if="pub.doi" :href="pub.doi" target="_blank" rel="noopener" class="text-zinc-900 text-[10px] font-bold tracking-widest uppercase border-b-2 border-yellow-800 pb-0.5 hover:text-yellow-800 transition-colors">DOI</a>
+                <a v-if="pub.url" :href="pub.url" target="_blank" rel="noopener" class="text-zinc-900 text-[10px] font-bold tracking-widest uppercase border-b-2 border-yellow-800 pb-0.5 hover:text-yellow-800 transition-colors">Read</a>
+                <span v-for="tag in pub.tags" :key="tag" class="text-[9px] text-zinc-400 uppercase font-bold tracking-tighter">#{{ tag }}</span>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="mt-12 flex flex-wrap gap-6">
+          <a :href="profile.googleScholar" target="_blank" rel="noopener" class="text-zinc-900 text-[10px] font-bold tracking-widest uppercase border-b-2 border-yellow-800 pb-1 hover:text-yellow-800 transition-colors">View Google Scholar</a>
+          <a :href="profile.orcid" target="_blank" rel="noopener" class="text-zinc-900 text-[10px] font-bold tracking-widest uppercase border-b-2 border-yellow-800 pb-1 hover:text-yellow-800 transition-colors">View ORCID</a>
+        </div>
+      </section>
+
+      <!-- Selected Projects -->
+      <section id="projects" class="py-32">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+          <div class="flex flex-col gap-4">
+            <h2 class="text-zinc-900 text-4xl font-bold font-noto-serif">Selected Projects</h2>
+            <div class="w-24 h-1 bg-yellow-800"></div>
+          </div>
+          <p class="text-zinc-600 text-sm leading-relaxed max-w-sm font-['Inter']">
+            A selection of research projects, institutional implementations, and technical solutions.
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-32">
+          <div v-for="(project, index) in projects" :key="project.id" :class="['relative group flex flex-col', index % 2 === 1 ? 'lg:items-end' : '']">
+            <div class="w-full lg:w-3/4 aspect-video bg-zinc-100 overflow-hidden rounded-sm relative">
+              <img :src="project.image || 'https://placehold.co/1200x800'" :alt="project.title" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" />
+              <div class="absolute top-4 left-4 flex flex-wrap gap-2">
+                <span v-if="project.featured" class="px-3 py-1 bg-yellow-800 text-white text-[9px] font-bold uppercase rounded-full tracking-widest">Featured</span>
+                <span class="px-3 py-1 bg-black/50 backdrop-blur-md text-white text-[9px] font-bold uppercase rounded-full tracking-widest">{{ project.status }}</span>
+                <span class="px-3 py-1 bg-yellow-800/80 backdrop-blur-md text-white text-[9px] font-bold uppercase rounded-full tracking-widest">{{ project.type }}</span>
+              </div>
+            </div>
+            <div :class="['lg:absolute top-1/2 lg:-translate-y-1/2 w-full lg:w-[500px] p-10 bg-white border border-zinc-100 shadow-xl lg:mt-0 mt-8 z-10', index % 2 === 1 ? 'left-0' : 'right-0']">
+              <span class="text-yellow-800 text-[10px] font-bold tracking-[0.2em] uppercase font-['Manrope']">{{ project.role }} • {{ project.year }}</span>
+              <h3 class="text-zinc-900 text-2xl font-bold font-noto-serif mt-4 mb-4">{{ project.title }}</h3>
+              <p class="text-zinc-600 text-sm leading-relaxed mb-6 font-['Inter']">
+                {{ project.shortDescription }}
+              </p>
+              <div class="flex flex-wrap gap-2 mb-8 font-['Manrope']">
+                <span v-for="tech in project.technologyStack" :key="tech" class="px-3 py-1 bg-orange-100 text-yellow-800 text-[9px] font-bold uppercase rounded-full">{{ tech }}</span>
+              </div>
+              <div class="flex gap-4">
+                <a v-if="project.liveUrl" :href="project.liveUrl" target="_blank" rel="noopener" class="text-zinc-900 text-[10px] font-bold tracking-widest uppercase border-b-2 border-yellow-800 pb-1 hover:text-yellow-800 transition-colors">Live Project</a>
+                <a v-if="project.repositoryUrl" :href="project.repositoryUrl" target="_blank" rel="noopener" class="text-zinc-900 text-[10px] font-bold tracking-widest uppercase border-b-2 border-yellow-800 pb-1 hover:text-yellow-800 transition-colors">Repository</a>
+              </div>
             </div>
           </div>
         </div>
@@ -232,7 +325,7 @@ onMounted(() => {
                   <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">{{ job.role }}</h3>
                   <div class="flex items-center gap-2 text-yellow-800 text-sm font-bold font-['Manrope']">
                     <span>{{ job.organization }}</span>
-                    <span class="text-zinc-300">•</span>
+                    <span class="text-zinc-300" aria-hidden="true">•</span>
                     <span class="text-zinc-500 font-normal uppercase tracking-widest text-[10px]">{{ job.location }}</span>
                   </div>
                 </div>
@@ -279,45 +372,6 @@ onMounted(() => {
         </div>
       </section>
 
-      <!-- Selected Projects -->
-      <section id="projects" class="py-32">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-          <div class="flex flex-col gap-4">
-            <h2 class="text-zinc-900 text-4xl font-bold font-noto-serif">Selected Projects</h2>
-            <div class="w-24 h-1 bg-yellow-800"></div>
-          </div>
-          <p class="text-zinc-600 text-sm leading-relaxed max-w-sm font-['Inter']">
-            A selection of research projects, institutional implementations, and technical solutions.
-          </p>
-        </div>
-
-        <div class="flex flex-col gap-32">
-          <div v-for="(project, index) in projects" :key="project.id" :class="['relative group flex flex-col', index % 2 === 1 ? 'lg:items-end' : '']">
-            <div class="w-full lg:w-3/4 aspect-video bg-zinc-100 overflow-hidden rounded-sm relative">
-              <img :src="project.image || 'https://placehold.co/1200x800'" :alt="project.title" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" />
-              <div class="absolute top-4 left-4 flex gap-2">
-                <span class="px-3 py-1 bg-black/50 backdrop-blur-md text-white text-[9px] font-bold uppercase rounded-full tracking-widest">{{ project.status }}</span>
-                <span class="px-3 py-1 bg-yellow-800/80 backdrop-blur-md text-white text-[9px] font-bold uppercase rounded-full tracking-widest">{{ project.type }}</span>
-              </div>
-            </div>
-            <div :class="['lg:absolute top-1/2 lg:-translate-y-1/2 w-full lg:w-[500px] p-10 bg-white border border-zinc-100 shadow-xl lg:mt-0 mt-8 z-10', index % 2 === 1 ? 'left-0' : 'right-0']">
-              <span class="text-yellow-800 text-[10px] font-bold tracking-[0.2em] uppercase font-['Manrope']">{{ project.role }} • {{ project.year }}</span>
-              <h3 class="text-zinc-900 text-2xl font-bold font-noto-serif mt-4 mb-4">{{ project.title }}</h3>
-              <p class="text-zinc-600 text-sm leading-relaxed mb-6 font-['Inter']">
-                {{ project.shortDescription }}
-              </p>
-              <div class="flex flex-wrap gap-2 mb-8 font-['Manrope']">
-                <span v-for="tech in project.technologyStack" :key="tech" class="px-3 py-1 bg-orange-100 text-yellow-800 text-[9px] font-bold uppercase rounded-full">{{ tech }}</span>
-              </div>
-              <div class="flex gap-4">
-                <a v-if="project.liveUrl" :href="project.liveUrl" target="_blank" class="text-zinc-900 text-[10px] font-bold tracking-widest uppercase border-b-2 border-yellow-800 pb-1 hover:text-yellow-800 transition-colors">Live Project</a>
-                <a v-if="project.repositoryUrl" :href="project.repositoryUrl" target="_blank" class="text-zinc-900 text-[10px] font-bold tracking-widest uppercase border-b-2 border-yellow-800 pb-1 hover:text-yellow-800 transition-colors">Repository</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- Education -->
       <section id="education" class="py-32 text-center">
         <div class="flex flex-col items-center mb-20 gap-4">
@@ -327,7 +381,7 @@ onMounted(() => {
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div v-for="(edu, index) in education" :key="index" class="p-12 bg-white border border-zinc-100 flex flex-col items-center gap-6 shadow-sm">
             <div class="w-12 h-10 flex items-center justify-center">
-               <span class="text-3xl text-yellow-800">🎓</span>
+               <span class="text-3xl text-yellow-800" aria-hidden="true">🎓</span>
             </div>
             <div class="flex flex-col gap-2">
               <h3 class="text-zinc-900 text-xl font-bold font-noto-serif">{{ edu.degree }} in {{ edu.field }}</h3>
@@ -358,7 +412,7 @@ onMounted(() => {
               <p class="text-zinc-500 text-[10px] uppercase tracking-wider font-bold">{{ cert.issuer }}</p>
             </div>
             <p class="text-zinc-600 text-xs leading-relaxed">{{ cert.description }}</p>
-            <a v-if="cert.credentialUrl" :href="cert.credentialUrl" target="_blank" class="text-yellow-800 text-[10px] font-bold uppercase tracking-widest mt-auto">View Credential</a>
+            <a v-if="cert.credentialUrl" :href="cert.credentialUrl" target="_blank" rel="noopener" class="text-yellow-800 text-[10px] font-bold uppercase tracking-widest mt-auto">View Credential</a>
           </div>
           <div v-for="(award, index) in awards" :key="'award-'+index" class="p-8 bg-white border border-zinc-100 shadow-sm rounded flex flex-col gap-4 border-l-4 border-l-yellow-800">
             <div class="flex justify-between items-start">
@@ -370,29 +424,6 @@ onMounted(() => {
               <p class="text-zinc-500 text-[10px] uppercase tracking-wider font-bold">{{ award.organization }}</p>
             </div>
             <p class="text-zinc-600 text-xs leading-relaxed">{{ award.description }}</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Research & Writing -->
-      <section id="writings" class="py-32">
-        <div class="mb-16">
-          <h2 class="text-zinc-900 text-4xl font-bold font-noto-serif mb-4">Research & Writing</h2>
-          <div class="w-24 h-1 bg-yellow-800"></div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div v-for="(writing, index) in writings" :key="index" class="group p-8 border border-zinc-100 hover:border-yellow-800 transition-colors flex flex-col gap-6">
-            <div class="flex justify-between items-start">
-              <span class="px-2 py-1 bg-zinc-100 text-zinc-500 text-[9px] font-bold uppercase rounded">{{ writing.type }}</span>
-              <span class="text-zinc-400 text-[10px] font-bold uppercase">{{ writing.status }}</span>
-            </div>
-            <h3 class="text-zinc-900 text-lg font-bold font-noto-serif group-hover:text-yellow-800 transition-colors leading-tight">{{ writing.title }}</h3>
-            <p class="text-zinc-600 text-sm leading-relaxed font-['Inter']">
-              {{ writing.description }}
-            </p>
-            <div class="flex flex-wrap gap-2 mt-auto">
-              <span v-for="tag in writing.tags" :key="tag" class="text-[9px] text-zinc-400 uppercase font-bold tracking-tighter">#{{ tag }}</span>
-            </div>
           </div>
         </div>
       </section>
@@ -412,45 +443,52 @@ onMounted(() => {
 
       <!-- Contact -->
       <section id="contact" class="py-32 bg-zinc-100 -mx-6 lg:-mx-24 px-6 lg:px-24">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
-          <div class="flex flex-col gap-10">
-            <div class="flex flex-col gap-6">
-              <h2 class="text-zinc-900 text-4xl font-bold font-noto-serif">Get in Touch</h2>
-              <p class="text-zinc-600 text-lg leading-relaxed max-w-md font-['Inter']">
-                {{ contact.cta }}
-              </p>
-            </div>
-            <div class="flex flex-col gap-6 font-['Inter']">
-              <div class="flex items-center gap-4 text-zinc-900" v-if="contact.email">
-                <span class="text-xl text-yellow-800">✉</span>
-                <a :href="'mailto:' + contact.email" class="hover:text-yellow-800 transition-colors">{{ contact.email }}</a>
-              </div>
-              <div class="flex items-center gap-4 text-zinc-900" v-if="contact.linkedin">
-                <span class="text-xl text-yellow-800">🔗</span>
-                <a :href="contact.linkedin" target="_blank" class="hover:text-yellow-800 transition-colors">LinkedIn Profile</a>
-              </div>
-              <div class="flex items-center gap-4 text-zinc-900" v-if="contact.location">
-                <span class="text-xl text-yellow-800">📍</span>
-                <span>{{ contact.location }}</span>
-              </div>
-            </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div class="flex flex-col gap-6">
+            <h2 class="text-zinc-900 text-4xl font-bold font-noto-serif">Get in Touch</h2>
+            <p class="text-zinc-600 text-lg leading-relaxed max-w-md font-['Inter']">
+              {{ contact.cta }}
+            </p>
+            <p class="text-zinc-500 text-sm leading-relaxed max-w-md font-['Inter']">
+              Open to research collaboration, graduate and academic discussion, and public-sector technology consulting.
+            </p>
           </div>
-          <div class="bg-white p-12 border border-zinc-100 shadow-sm font-['Inter']">
-            <form class="flex flex-col gap-8" @submit.prevent>
-              <div class="flex flex-col gap-2">
-                <label class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">NAME</label>
-                <input type="text" required class="w-full bg-zinc-50 border-b border-zinc-200 py-3 focus:outline-none focus:border-black transition-colors" />
-              </div>
-              <div class="flex flex-col gap-2">
-                <label class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">EMAIL</label>
-                <input type="email" required class="w-full bg-zinc-50 border-b border-zinc-200 py-3 focus:outline-none focus:border-black transition-colors" />
-              </div>
-              <div class="flex flex-col gap-2">
-                <label class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">INQUIRY</label>
-                <textarea rows="4" required class="w-full bg-zinc-50 border-b border-zinc-200 py-3 focus:outline-none focus:border-black transition-colors resize-none"></textarea>
-              </div>
-              <button type="submit" class="w-full py-4 bg-black text-white text-xs font-bold tracking-widest uppercase font-['Manrope'] hover:bg-zinc-800 transition-colors">SEND MESSAGE</button>
-            </form>
+          <div class="flex flex-col gap-4 font-['Inter']">
+            <a v-if="contact.email" :href="'mailto:' + contact.email" class="group flex items-center gap-4 p-5 bg-white border border-zinc-100 rounded hover:border-yellow-800 transition-colors">
+              <span class="text-xl text-yellow-800 w-6 text-center" aria-hidden="true">✉</span>
+              <span class="flex flex-col">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Email</span>
+                <span class="text-zinc-900 group-hover:text-yellow-800 transition-colors break-all">{{ contact.email }}</span>
+              </span>
+            </a>
+            <a :href="profile.linkedin" target="_blank" rel="noopener" class="group flex items-center gap-4 p-5 bg-white border border-zinc-100 rounded hover:border-yellow-800 transition-colors">
+              <span class="text-sm font-bold text-yellow-800 w-6 text-center" aria-hidden="true">in</span>
+              <span class="flex flex-col">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">LinkedIn</span>
+                <span class="text-zinc-900 group-hover:text-yellow-800 transition-colors">Connect on LinkedIn</span>
+              </span>
+            </a>
+            <a :href="profile.orcid" target="_blank" rel="noopener" class="group flex items-center gap-4 p-5 bg-white border border-zinc-100 rounded hover:border-yellow-800 transition-colors">
+              <span class="text-sm font-bold text-yellow-800 w-6 text-center" aria-hidden="true">iD</span>
+              <span class="flex flex-col">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">ORCID</span>
+                <span class="text-zinc-900 group-hover:text-yellow-800 transition-colors">View research identifier</span>
+              </span>
+            </a>
+            <a :href="profile.googleScholar" target="_blank" rel="noopener" class="group flex items-center gap-4 p-5 bg-white border border-zinc-100 rounded hover:border-yellow-800 transition-colors">
+              <span class="text-sm font-bold text-yellow-800 w-6 text-center" aria-hidden="true">GS</span>
+              <span class="flex flex-col">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Google Scholar</span>
+                <span class="text-zinc-900 group-hover:text-yellow-800 transition-colors">View publications</span>
+              </span>
+            </a>
+            <div v-if="contact.location" class="flex items-center gap-4 p-5 bg-white border border-zinc-100 rounded">
+              <span class="text-xl text-yellow-800 w-6 text-center" aria-hidden="true">📍</span>
+              <span class="flex flex-col">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Location</span>
+                <span class="text-zinc-900">{{ contact.location }}</span>
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -461,9 +499,9 @@ onMounted(() => {
       <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
         <div class="text-zinc-900 text-lg font-bold font-noto-serif">{{ profile.name }}</div>
         <div class="flex flex-wrap justify-center gap-8 text-zinc-400 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">
-          <a :href="profile.linkedin" target="_blank" class="hover:text-zinc-900 transition-colors">LINKEDIN</a>
-          <a :href="profile.orcid" target="_blank" class="hover:text-zinc-900 transition-colors">ORCID</a>
-          <a :href="profile.googleScholar" target="_blank" class="hover:text-zinc-900 transition-colors">GOOGLE SCHOLAR</a>
+          <a :href="profile.linkedin" target="_blank" rel="noopener" class="hover:text-zinc-900 transition-colors">LINKEDIN</a>
+          <a :href="profile.orcid" target="_blank" rel="noopener" class="hover:text-zinc-900 transition-colors">ORCID</a>
+          <a :href="profile.googleScholar" target="_blank" rel="noopener" class="hover:text-zinc-900 transition-colors">GOOGLE SCHOLAR</a>
           <NuxtLink to="/privacy" class="hover:text-zinc-900 transition-colors">PRIVACY POLICY</NuxtLink>
         </div>
         <div class="text-zinc-400 text-[10px] font-bold tracking-widest font-['Manrope'] uppercase">
@@ -473,12 +511,12 @@ onMounted(() => {
     </footer>
 
     <!-- Back to Top Button -->
-    <button 
-      @click="scrollToTop" 
-      :class="['fixed bottom-10 right-10 z-[100] w-14 h-14 bg-black text-white flex items-center justify-center shadow-2xl transition-all duration-500 hover:bg-zinc-800 focus:outline-none rounded-full', showScrollTop ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-10 pointer-events-none']"
+    <button
+      @click="scrollToTop"
+      :class="['fixed bottom-10 right-10 z-[100] w-14 h-14 bg-black text-white flex items-center justify-center shadow-2xl transition-all duration-500 hover:bg-zinc-800 focus-visible:outline-2 focus-visible:outline-yellow-800 focus-visible:outline-offset-2 rounded-full', showScrollTop ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-10 pointer-events-none']"
       aria-label="Back to Top"
     >
-      <span class="text-2xl">↑</span>
+      <span class="text-2xl" aria-hidden="true">↑</span>
     </button>
   </div>
 </template>
