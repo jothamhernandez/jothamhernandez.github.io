@@ -110,7 +110,7 @@ const print = () => {
         <h2 class="text-zinc-900 text-xs font-bold tracking-[0.2em] uppercase font-['Manrope'] mb-4 border-b border-zinc-200 pb-1">Certifications & Awards</h2>
         <ul class="flex flex-col gap-1.5">
           <li v-for="(cert, index) in certifications" :key="'c'+index" class="text-xs leading-relaxed text-zinc-600">
-            <span class="text-zinc-900 font-bold">{{ cert.title }}</span> — {{ cert.issuer }} ({{ cert.year }})
+            <span class="text-zinc-900 font-bold">{{ cert.title }}</span> — {{ cert.issuer }} <template v-if="cert.category !== 'recognition'">({{ cert.issued.slice(0, 4) }})</template><a v-if="cert.credentialUrl" :href="cert.credentialUrl" class="text-yellow-800 print:text-zinc-500"> · verify</a>
           </li>
           <li v-for="(award, index) in awards" :key="'a'+index" class="text-xs leading-relaxed text-zinc-600">
             <span class="text-zinc-900 font-bold">{{ award.title }}</span> — {{ award.organization }} ({{ award.year }})

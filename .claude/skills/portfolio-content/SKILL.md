@@ -32,7 +32,7 @@ Arrays render in file order — reorder entries to reorder cards on the page.
 
 | File | Shape | Renders in section | Item fields |
 |------|-------|--------------------|-------------|
-| `profile.json` | object | Nav brand, footer, JSON-LD | `name`, `title`, `currentRole`, `email`, `location`, `linkedin`, `orcid`, `googleScholar` |
+| `profile.json` | object | Nav brand, footer, JSON-LD | `name`, `title`, `currentRole`, `email`, `location`, `linkedin`, `orcid`, `googleScholar`, `credly` |
 | `hero.json` | object | Hero | `headline`, `subtitle`, `summary`, `primaryCta{text,url}`, `secondaryCta{text,url}` |
 | `about.json` | object | About | `title`, `paragraphs[]`, `image` |
 | `researchInterests.json` | array | Research Interests | `id`, `title`, `description`, `icon`, `tags[]` |
@@ -40,7 +40,7 @@ Arrays render in file order — reorder entries to reorder cards on the page.
 | `skills.json` | array | Technical Expertise | `id`, `category`, `description`, `skills[]` |
 | `projects.json` | array | Selected Projects | `id`, `title`, `type`, `status`, `year`, `role`, `shortDescription`, `technologyStack[]`, `image`, `liveUrl`, `repositoryUrl` (+ unused: `longDescription`, `impact`, `tags`, `featured`) |
 | `education.json` | array | Education | `institution`, `degree`, `field`, `startDate`, `endDate`, `location`, `description` |
-| `certifications.json` | array | Certifications & Awards | `title`, `issuer`, `year`, `credentialUrl`, `description` |
+| `certifications.json` | array | Certifications & Credentials (`#certifications`) | `id`, `title`, `issuer`, `category` (`certification` \| `recognition` \| `course` — picks the sub-group), `issued` (`YYYY-MM-DD` or `YYYY`), `expires`, `badgeImage`, `credentialUrl`, `description`, `featured`, `verifiedBy` (`"Credly"` counts toward the verified total). Credly data: `https://www.credly.com/users/jotham-hernandez/badges.json` |
 | `awards.json` | array | Certifications & Awards | `title`, `organization`, `year`, `description` |
 | `publications.json` | array | Publications & Research Writing | `title`, `authors`, `venue`, `type`, `status`, `year`, `doi`, `url`, `tags[]` |
 | `contact.json` | object | Contact | `cta`, `email`, `linkedin`, `website`, `location` |

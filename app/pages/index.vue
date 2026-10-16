@@ -29,6 +29,20 @@ const closeMenu = () => {
   isMenuOpen.value = false
 }
 
+// Certifications are grouped by `category`; most recent first within each group.
+const byNewest = (a: { issued: string }, b: { issued: string }) => b.issued.localeCompare(a.issued)
+const professionalCerts = certifications.filter((c) => c.category === 'certification').sort(byNewest)
+const recognitionBadges = certifications.filter((c) => c.category === 'recognition').sort(byNewest)
+const courseBadges = certifications.filter((c) => c.category === 'course').sort(byNewest)
+const verifiedCount = certifications.filter((c) => c.verifiedBy === 'Credly').length
+
+// "2024-01-26" -> "Jan 2024"; bare years pass through unchanged.
+const formatMonthYear = (date: string) => {
+  if (!/^\d{4}-\d{2}/.test(date)) return date
+  const [y, m] = date.split('-').map(Number)
+  return new Date(Date.UTC(y, m - 1, 1)).toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })
+}
+
 // Structured data (schema.org Person) — built from the same JSON the page renders,
 // so it stays in sync with the visible content and enriches search/AI results.
 const structuredData = {
@@ -45,7 +59,16 @@ const structuredData = {
   },
   alumniOf: education.map((e) => ({ '@type': 'CollegeOrUniversity', name: e.institution })),
   knowsAbout: researchInterests.map((r) => r.title),
-  sameAs: [profile.linkedin, profile.orcid, profile.googleScholar]
+  sameAs: [profile.linkedin, profile.orcid, profile.googleScholar, profile.credly],
+  hasCredential: certifications
+    .filter((c) => c.credentialUrl)
+    .map((c) => ({
+      '@type': 'EducationalOccupationalCredential',
+      name: c.title,
+      credentialCategory: c.category === 'certification' ? 'Professional Certification' : 'Badge',
+      recognizedBy: { '@type': 'Organization', name: c.issuer },
+      url: c.credentialUrl
+    }))
 }
 
 // SEO Meta
@@ -73,7 +96,7 @@ useHead({
   script: [
     {
       type: 'application/ld+json',
-      children: JSON.stringify(structuredData)
+      innerHTML: JSON.stringify(structuredData)
     }
   ]
 })
@@ -122,37 +145,39 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="w-full bg-white font-['Inter']">
+  <div class="w-full bg-white font-['Inter'] overflow-x-clip">
     <!-- Navigation -->
     <nav class="sticky top-0 z-50 w-full px-8 py-4 bg-white/80 backdrop-blur-md border-b border-gray-100 flex justify-between items-center">
-      <div class="text-zinc-900 text-xl font-bold font-noto-serif">{{ profile.name }}</div>
+      <div class="text-zinc-900 text-xl font-bold font-noto-serif whitespace-nowrap">{{ profile.name }}</div>
 
       <!-- Mobile Menu Toggle -->
-      <button @click="toggleMenu" :aria-expanded="isMenuOpen" class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 z-[70] focus-visible:outline-2 focus-visible:outline-yellow-800 focus-visible:outline-offset-2" aria-label="Toggle Menu">
+      <button @click="toggleMenu" :aria-expanded="isMenuOpen" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 z-[70] focus-visible:outline-2 focus-visible:outline-yellow-800 focus-visible:outline-offset-2" aria-label="Toggle Menu">
         <span :class="['w-6 h-0.5 bg-zinc-900 block transition-all duration-300', isMenuOpen ? 'rotate-45 translate-y-2' : '']"></span>
         <span :class="['w-6 h-0.5 bg-zinc-900 block transition-opacity duration-300', isMenuOpen ? 'opacity-0' : '']"></span>
         <span :class="['w-6 h-0.5 bg-zinc-900 block transition-all duration-300', isMenuOpen ? '-rotate-45 -translate-y-2' : '']"></span>
       </button>
 
       <!-- Desktop Navigation -->
-      <div class="hidden md:flex gap-8 items-center font-noto-serif">
+      <div class="hidden lg:flex gap-6 xl:gap-8 items-center font-noto-serif">
         <a href="#research" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Research</a>
         <a href="#publications" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Publications</a>
         <a href="#projects" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Projects</a>
         <a href="#experience" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Experience</a>
         <a href="#expertise" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Expertise</a>
         <a href="#education" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Education</a>
+        <a href="#certifications" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Credentials</a>
         <a href="#contact" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Contact</a>
       </div>
 
       <!-- Mobile Navigation Overlay -->
-      <div :class="['fixed inset-0 bg-white z-[60] h-[100vh] flex flex-col items-center justify-start gap-8 transition-transform duration-500 md:hidden pt-24 pb-12', isMenuOpen ? 'translate-x-0' : 'translate-x-full']">
+      <div :class="['fixed inset-0 bg-white z-[60] h-[100vh] flex flex-col items-center justify-start gap-8 transition-transform duration-500 lg:hidden pt-24 pb-12', isMenuOpen ? 'translate-x-0' : 'translate-x-full']">
         <a href="#research" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Research</a>
         <a href="#publications" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Publications</a>
         <a href="#projects" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Projects</a>
         <a href="#experience" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Experience</a>
         <a href="#expertise" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Expertise</a>
         <a href="#education" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Education</a>
+        <a href="#certifications" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Credentials</a>
         <a href="#contact" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Contact</a>
       </div>
     </nav>
@@ -166,6 +191,7 @@ onMounted(() => {
             <div class="flex flex-wrap gap-2">
               <span class="px-3 py-1 bg-orange-100 text-yellow-800 text-[10px] font-bold uppercase tracking-widest rounded-full font-['Manrope']">WorldSkills PH · Web Expert</span>
               <span class="px-3 py-1 bg-zinc-100 text-zinc-600 text-[10px] font-bold uppercase tracking-widest rounded-full font-['Manrope']">Graduate Researcher · Handong</span>
+              <a href="#certifications" class="px-3 py-1 bg-zinc-100 text-zinc-600 text-[10px] font-bold uppercase tracking-widest rounded-full font-['Manrope'] hover:text-yellow-800 transition-colors">AWS Solutions Architect</a>
             </div>
             <h1 class="text-zinc-900 text-6xl lg:text-7xl font-bold font-noto-serif leading-[1.1]">
               {{ hero.headline }}
@@ -185,6 +211,7 @@ onMounted(() => {
               <a :href="profile.googleScholar" target="_blank" rel="noopener" class="text-zinc-500 text-[11px] font-bold tracking-widest uppercase hover:text-yellow-800 transition-colors">Google Scholar</a>
               <a :href="profile.orcid" target="_blank" rel="noopener" class="text-zinc-500 text-[11px] font-bold tracking-widest uppercase hover:text-yellow-800 transition-colors">ORCID</a>
               <a :href="profile.linkedin" target="_blank" rel="noopener" class="text-zinc-500 text-[11px] font-bold tracking-widest uppercase hover:text-yellow-800 transition-colors">LinkedIn</a>
+              <a :href="profile.credly" target="_blank" rel="noopener" class="text-zinc-500 text-[11px] font-bold tracking-widest uppercase hover:text-yellow-800 transition-colors">Credly</a>
             </div>
           </div>
           <div class="absolute right-[-10%] top-1/2 -translate-y-1/2 opacity-5 pointer-events-none" aria-hidden="true">
@@ -395,37 +422,72 @@ onMounted(() => {
         </div>
       </section>
 
-      <!-- Certifications & Awards -->
-      <section class="py-32 bg-zinc-100 -mx-6 lg:-mx-24 px-6 lg:px-24">
-        <div class="flex items-center gap-8 mb-16">
-          <h2 class="text-zinc-900 text-3xl font-bold font-noto-serif whitespace-nowrap">Certifications & Awards</h2>
-          <div class="w-full h-px bg-zinc-200"></div>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-['Inter']">
-          <div v-for="(cert, index) in certifications" :key="'cert-'+index" class="p-8 bg-white border border-zinc-100 shadow-sm rounded flex flex-col gap-4">
-            <div class="flex justify-between items-start">
-              <span class="text-yellow-800 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">CERTIFICATION</span>
-              <span class="text-zinc-400 text-[10px] font-bold uppercase">{{ cert.year }}</span>
-            </div>
-            <div>
-              <p class="text-zinc-900 text-sm font-bold mb-1">{{ cert.title }}</p>
-              <p class="text-zinc-500 text-[10px] uppercase tracking-wider font-bold">{{ cert.issuer }}</p>
-            </div>
-            <p class="text-zinc-600 text-xs leading-relaxed">{{ cert.description }}</p>
-            <a v-if="cert.credentialUrl" :href="cert.credentialUrl" target="_blank" rel="noopener" class="text-yellow-800 text-[10px] font-bold uppercase tracking-widest mt-auto">View Credential</a>
+      <!-- Certifications & Credentials -->
+      <section id="certifications" class="py-32 bg-zinc-100 -mx-6 lg:-mx-24 px-6 lg:px-24">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+          <div>
+            <h2 class="text-zinc-900 text-4xl font-bold font-noto-serif mb-4">Certifications &amp; Credentials</h2>
+            <div class="w-24 h-1 bg-yellow-800"></div>
           </div>
-          <div v-for="(award, index) in awards" :key="'award-'+index" class="p-8 bg-white border border-zinc-100 shadow-sm rounded flex flex-col gap-4 border-l-4 border-l-yellow-800">
-            <div class="flex justify-between items-start">
-              <span class="text-yellow-800 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">AWARD</span>
-              <span class="text-zinc-400 text-[10px] font-bold uppercase">{{ award.year }}</span>
+          <a :href="profile.credly" target="_blank" rel="noopener" class="group flex items-center gap-4 self-start md:self-auto focus-visible:outline-2 focus-visible:outline-yellow-800 focus-visible:outline-offset-2">
+            <span class="flex flex-col md:text-right">
+              <span class="text-zinc-900 text-2xl font-bold font-noto-serif leading-none">{{ verifiedCount }}</span>
+              <span class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase font-['Manrope'] whitespace-nowrap">Verified badges</span>
+            </span>
+            <span class="text-zinc-900 text-[10px] font-bold tracking-widest uppercase font-['Manrope'] whitespace-nowrap border-b-2 border-yellow-800 pb-1 group-hover:text-yellow-800 transition-colors">View on Credly ↗</span>
+          </a>
+        </div>
+
+        <!-- Professional certifications -->
+        <h3 class="text-yellow-800 text-[10px] font-bold tracking-[0.2em] uppercase font-['Manrope'] mb-6">Professional Certifications</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
+          <div v-for="cert in professionalCerts" :key="cert.id" class="p-6 bg-white border border-zinc-100 shadow-sm rounded flex gap-4 md:gap-6 items-start">
+            <img v-if="cert.badgeImage" :src="cert.badgeImage" :alt="cert.title + ' badge'" width="88" height="88" loading="lazy" class="w-14 h-14 md:w-20 md:h-20 object-contain shrink-0" />
+            <div class="flex flex-col gap-2 min-w-0 flex-1">
+              <p class="text-zinc-500 text-[10px] uppercase tracking-wider font-bold">{{ cert.issuer }}</p>
+              <h4 class="text-zinc-900 text-lg font-bold font-noto-serif leading-snug">{{ cert.title }}</h4>
+              <p class="text-zinc-600 text-xs leading-relaxed">{{ cert.description }}</p>
+              <div class="flex flex-wrap items-center justify-between gap-3 pt-2 mt-auto">
+                <span class="text-zinc-400 text-[10px] font-bold uppercase tracking-wider font-['Manrope']">
+                  Issued {{ formatMonthYear(cert.issued) }}<template v-if="cert.expires"> · Valid through {{ formatMonthYear(cert.expires) }}</template>
+                </span>
+                <a v-if="cert.credentialUrl" :href="cert.credentialUrl" target="_blank" rel="noopener" class="text-yellow-800 text-[10px] font-bold uppercase tracking-widest hover:text-zinc-900 transition-colors">Verify ↗</a>
+              </div>
             </div>
-            <div>
-              <p class="text-zinc-900 text-sm font-bold mb-1">{{ award.title }}</p>
-              <p class="text-zinc-500 text-[10px] uppercase tracking-wider font-bold">{{ award.organization }}</p>
+          </div>
+        </div>
+
+        <!-- International recognition: WorldSkills badges + awards -->
+        <h3 class="text-yellow-800 text-[10px] font-bold tracking-[0.2em] uppercase font-['Manrope'] mb-6">International Recognition &amp; Awards</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
+          <div v-for="badge in recognitionBadges" :key="badge.id" class="p-6 bg-white border border-zinc-100 border-l-4 border-l-yellow-800 shadow-sm rounded flex gap-4 md:gap-6 items-start">
+            <img v-if="badge.badgeImage" :src="badge.badgeImage" :alt="badge.title + ' badge'" width="88" height="88" loading="lazy" class="w-14 h-14 md:w-20 md:h-20 object-contain shrink-0" />
+            <div class="flex flex-col gap-2 min-w-0 flex-1">
+              <p class="text-zinc-500 text-[10px] uppercase tracking-wider font-bold">{{ badge.issuer }}</p>
+              <h4 class="text-zinc-900 text-lg font-bold font-noto-serif leading-snug">{{ badge.title }}</h4>
+              <p class="text-zinc-600 text-xs leading-relaxed">{{ badge.description }}</p>
+              <a v-if="badge.credentialUrl" :href="badge.credentialUrl" target="_blank" rel="noopener" class="text-yellow-800 text-[10px] font-bold uppercase tracking-widest hover:text-zinc-900 transition-colors pt-2 self-start">Verify ↗</a>
             </div>
+          </div>
+          <div v-for="(award, index) in awards" :key="'award-'+index" class="p-6 bg-white border border-zinc-100 border-l-4 border-l-yellow-800 shadow-sm rounded flex flex-col gap-2">
+            <p class="text-zinc-500 text-[10px] uppercase tracking-wider font-bold">{{ award.organization }} · {{ award.year }}</p>
+            <h4 class="text-zinc-900 text-lg font-bold font-noto-serif leading-snug">{{ award.title }}</h4>
             <p class="text-zinc-600 text-xs leading-relaxed">{{ award.description }}</p>
           </div>
         </div>
+
+        <!-- Continuing education -->
+        <h3 class="text-yellow-800 text-[10px] font-bold tracking-[0.2em] uppercase font-['Manrope'] mb-6">Continuing Education</h3>
+        <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <li v-for="course in courseBadges" :key="course.id" class="bg-white border border-zinc-100 shadow-sm rounded p-5 flex items-center gap-4">
+            <img v-if="course.badgeImage" :src="course.badgeImage" :alt="course.title + ' badge'" width="48" height="48" loading="lazy" class="w-12 h-12 object-contain shrink-0" />
+            <span v-else class="w-12 h-12 shrink-0 rounded-full bg-orange-50 text-yellow-800 flex items-center justify-center text-[10px] font-bold font-['Manrope']" aria-hidden="true">{{ course.issued.slice(0, 4) }}</span>
+            <div class="flex flex-col min-w-0">
+              <component :is="course.credentialUrl ? 'a' : 'span'" :href="course.credentialUrl || undefined" :target="course.credentialUrl ? '_blank' : undefined" :rel="course.credentialUrl ? 'noopener' : undefined" class="text-zinc-900 text-sm font-bold leading-snug" :class="course.credentialUrl ? 'hover:text-yellow-800 transition-colors' : ''">{{ course.title }}</component>
+              <span class="text-zinc-500 text-[10px] uppercase tracking-wider font-bold">{{ course.issuer }} · {{ formatMonthYear(course.issued) }}</span>
+            </div>
+          </li>
+        </ul>
       </section>
 
       <!-- Vision -->
@@ -482,6 +544,13 @@ onMounted(() => {
                 <span class="text-zinc-900 group-hover:text-yellow-800 transition-colors">View publications</span>
               </span>
             </a>
+            <a :href="profile.credly" target="_blank" rel="noopener" class="group flex items-center gap-4 p-5 bg-white border border-zinc-100 rounded hover:border-yellow-800 transition-colors">
+              <span class="text-sm font-bold text-yellow-800 w-6 text-center" aria-hidden="true">✓</span>
+              <span class="flex flex-col">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Credly</span>
+                <span class="text-zinc-900 group-hover:text-yellow-800 transition-colors">Verify certifications &amp; badges</span>
+              </span>
+            </a>
             <div v-if="contact.location" class="flex items-center gap-4 p-5 bg-white border border-zinc-100 rounded">
               <span class="text-xl text-yellow-800 w-6 text-center" aria-hidden="true">📍</span>
               <span class="flex flex-col">
@@ -502,6 +571,7 @@ onMounted(() => {
           <a :href="profile.linkedin" target="_blank" rel="noopener" class="hover:text-zinc-900 transition-colors">LINKEDIN</a>
           <a :href="profile.orcid" target="_blank" rel="noopener" class="hover:text-zinc-900 transition-colors">ORCID</a>
           <a :href="profile.googleScholar" target="_blank" rel="noopener" class="hover:text-zinc-900 transition-colors">GOOGLE SCHOLAR</a>
+          <a :href="profile.credly" target="_blank" rel="noopener" class="hover:text-zinc-900 transition-colors">CREDLY</a>
           <NuxtLink to="/privacy" class="hover:text-zinc-900 transition-colors">PRIVACY POLICY</NuxtLink>
         </div>
         <div class="text-zinc-400 text-[10px] font-bold tracking-widest font-['Manrope'] uppercase">
