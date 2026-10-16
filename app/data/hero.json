@@ -1,5 +1,7 @@
 {
   "headline": "Jotham Hernandez",
+  "eyebrow": "Information Technology Officer · Graduate Researcher",
+  "statement": "Advancing digital government through trustworthy AI and resilient public-sector ICT infrastructure.",
   "subtitle": "ICT Professional | Graduate Researcher in ICT Convergence | Digital Government and AI Systems",
   "summary": "Emphasizing the intersection of ICT infrastructure, public-sector digital transformation, AI-enabled systems, and education to drive institutional excellence.",
   "primaryCta": {
@@ -7,8 +9,35 @@
     "url": "#publications"
   },
   "secondaryCta": {
-    "text": "Research Interests",
-    "url": "#research"
+    "text": "Selected work",
+    "url": "#projects"
   },
-  "cvUrl": "/cv"
+  "cvUrl": "/cv",
+  "availability": "Open to research collaboration",
+  "locations": "Philippines · Pohang, South Korea",
+  "credentials": [
+    {
+      "org": "WorldSkills",
+      "title": "Philippine Expert, Web Technologies",
+      "href": "#certifications"
+    },
+    {
+      "org": "Handong Global University",
+      "title": "Graduate Researcher, ICT Convergence",
+      "href": "#about"
+    },
+    {
+      "org": "Amazon Web Services",
+      "title": "Certified Solutions Architect – Associate",
+      "href": "#certifications"
+    }
+  ],
+  "institutions": [
+    "TESDA",
+    "Handong Global University",
+    "WorldSkills",
+    "Amazon Web Services",
+    "Microsoft",
+    "Cisco"
+  ]
 }

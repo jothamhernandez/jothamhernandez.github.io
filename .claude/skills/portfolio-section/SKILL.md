@@ -30,8 +30,9 @@ and the section is invisible, unstyled, or unreachable from the nav.
    - add a `<section>` inside `<main>`, positioned where it should appear on the
      page (order in the file = order on the page).
 3. **Navigation** — if the section should be reachable from the menu, give the
-   `<section>` an `id="..."` and add a matching `<a href="#id">` link in **both**
-   nav lists.
+   `<section>` an `id="..."` and add an entry to the `navItems` array in
+   `index.vue`'s `<script setup>`. Both the desktop pill and the mobile overlay
+   render from that one array, and the scrollspy observes it automatically.
 
 ## Step 1 — Data
 
@@ -42,71 +43,54 @@ valid JSON (no trailing commas/comments).
 ## Step 2 — Template section
 
 Reuse the design system (see the `portfolio-design` skill) so it looks native.
-Skeleton for a card-grid section on a light background:
+Skeleton for a card-grid section on a paper band:
 
 ```html
-<section id="talks" class="py-32">
-  <div class="mb-16">
-    <h2 class="text-zinc-900 text-4xl font-bold font-noto-serif mb-4">Talks & Presentations</h2>
-    <div class="w-24 h-1 bg-yellow-800"></div>
-  </div>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    <div v-for="item in talks" :key="item.id"
-         class="p-8 bg-white border border-zinc-100 shadow-sm rounded flex flex-col gap-4">
-      <h3 class="text-zinc-900 text-lg font-bold font-noto-serif">{{ item.title }}</h3>
-      <p class="text-zinc-600 text-sm leading-relaxed">{{ item.description }}</p>
+<section id="talks" class="bg-paper py-32 px-6 lg:px-12">
+  <div class="max-w-[1400px] mx-auto">
+    <p v-reveal class="font-mono text-[11px] uppercase tracking-[0.25em] text-gold-deep mb-6">§ 08 — Talks</p>
+    <h2 v-reveal="60" class="font-display font-semibold text-5xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight mb-16">
+      Talks &amp; <span class="italic font-normal">presentations</span>
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <article v-for="(item, i) in talks" :key="item.id" v-reveal="i * 80"
+               class="bg-paper border border-ink/10 p-8 flex flex-col gap-4">
+        <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-gold-deep">{{ item.event }} · {{ item.year }}</p>
+        <h3 class="font-display text-2xl leading-tight">{{ item.title }}</h3>
+        <p class="text-ink/65 leading-relaxed">{{ item.description }}</p>
+      </article>
     </div>
   </div>
 </section>
 ```
 
-To make the band full-bleed with its own background, add
-`bg-zinc-100 -mx-6 lg:-mx-24 px-6 lg:px-24` to the `<section>`. The page
-alternates white / `zinc-100` bands — check the neighbors and alternate so two
-same-colored bands don't sit adjacent. There's one `bg-black text-white` band
-(Expertise); copy its inverted treatment if you want another dark section.
+Bands alternate `bg-paper` / `bg-paper-2` / `bg-ink` — check the neighbours so
+two same-coloured bands don't touch. For a dark band use
+`relative bg-ink text-paper grain`, `text-gold` for the eyebrow and italic
+word, and `text-paper/60`-style opacities for body text. Renumber the `§ NN`
+eyebrows after inserting a section.
 
-## Step 3 — Navigation (do BOTH lists)
+## Step 3 — Navigation
 
-The nav exists twice in `index.vue`: a desktop list (`hidden md:flex …`) and a
-mobile overlay list (`… md:hidden`). Add the anchor to **both** or the link is
-missing on one form factor:
-
-```html
-<!-- desktop list -->
-<a href="#talks" class="text-zinc-500 text-sm font-semibold hover:text-zinc-900 transition-colors">Talks</a>
-<!-- mobile overlay list -->
-<a href="#talks" @click="closeMenu" class="text-zinc-900 text-2xl font-bold font-noto-serif">Talks</a>
-```
-
-Smooth-scroll to the anchor works automatically: Lenis intercepts `a[href^="#"]`
-clicks on mount, so no JS wiring is needed — just ensure the `id` on the section
-matches the `href`.
+Add `{ id: 'talks', label: 'Talks' }` to `navItems` in index.vue. Keep the pill
+short (it holds ~7 items at `lg`); not every section needs a nav entry.
+Smooth scroll works automatically: a delegated click handler sends any
+`<a href="#id">` through Lenis, so only the `id` must match.
 
 ## Surfacing an existing-but-unrendered field
 
-Some data still exists but isn't shown: `project.longDescription` and
-`project.impact`. To display one, add markup inside that section's `v-for`
-referencing the field (guard optional fields with `v-if`). Example — surface a
-project's impact statement:
-
-```html
-<p v-if="project.impact" class="text-zinc-500 text-xs italic leading-relaxed mb-4">
-  {{ project.impact }}
-</p>
-```
-
-(Publications already render `doi`/`url` conditionally, and `project.featured`
-renders a "Featured" ribbon — those are wired up; just populate the data.)
+Most fields are rendered now (projects show `longDescription` and `impact`;
+publications render `doi`/`url` when non-empty; `project.featured` shows a
+"Featured" tag). If you add a new optional field, render it inside that
+section's `v-for` and guard it with `v-if`.
 
 ## Removing or reordering a section
 
-- **Remove:** delete the `<section>` block, its `import`, and its nav links (both
-  lists). You can leave the orphaned `app/data/*.json` file or delete it; if you
+- **Remove:** delete the `<section>` block, its `import`, and its `navItems`
+  entry. You can leave the orphaned `app/data/*.json` file or delete it; if you
   delete it, make sure no remaining import references it.
 - **Reorder on the page:** move the whole `<section>` block within `<main>`.
-- **Reorder nav:** move the `<a>` in both lists (nav order is independent of
-  section order, but keeping them consistent is less confusing).
+- **Reorder nav:** reorder `navItems` (keep it consistent with page order).
 
 ## Verify
 

@@ -8,12 +8,24 @@
     "role": "Researcher / Developer",
     "shortDescription": "A Hybrid RAG and knowledge graph system for occupation-skills mapping.",
     "longDescription": "This project explores multi-source data ingestion, dense vector retrieval, graph-based reasoning, and API-based access for labor-market intelligence.",
-    "technologyStack": ["Python", "Neo4j", "PostgreSQL", "Vector Database", "RAG", "Knowledge Graph"],
+    "technologyStack": [
+      "Python",
+      "Neo4j",
+      "PostgreSQL",
+      "Vector Database",
+      "RAG",
+      "Knowledge Graph"
+    ],
     "impact": "Supports structured analysis of occupation-skill relationships for workforce intelligence.",
-    "image": "/projects/skills-bridge.png",
+    "image": "/projects/skills-bridge.webp",
     "liveUrl": "https://www.skills-bridge.ph",
     "repositoryUrl": "",
-    "tags": ["RAG", "Knowledge Graph", "Skills Intelligence", "AI"],
+    "tags": [
+      "RAG",
+      "Knowledge Graph",
+      "Skills Intelligence",
+      "AI"
+    ],
     "featured": true
   },
   {
@@ -25,12 +37,20 @@
     "role": "Principal Investigator",
     "shortDescription": "A framework for assessing and improving AI readiness in public-sector institutions.",
     "longDescription": "Developing a comprehensive set of indicators and policy recommendations to guide digital transformation and AI adoption in government agencies.",
-    "technologyStack": ["Policy Analysis", "Governance Frameworks", "AI Maturity Models"],
+    "technologyStack": [
+      "Policy Analysis",
+      "Governance Frameworks",
+      "AI Maturity Models"
+    ],
     "impact": "Provides a roadmap for public-sector leaders to navigate the complexities of AI integration.",
-    "image": "/projects/digital-government.png",
+    "image": "/projects/digital-government.webp",
     "liveUrl": "",
     "repositoryUrl": "",
-    "tags": ["Digital Government", "AI Policy", "Institutional Readiness"],
+    "tags": [
+      "Digital Government",
+      "AI Policy",
+      "Institutional Readiness"
+    ],
     "featured": true
   },
   {
@@ -42,12 +62,21 @@
     "role": "Lead Architect",
     "shortDescription": "Real-time tabulation systems for major international and local pageants and festivals.",
     "longDescription": "Developed a series of high-reliability, real-time tabulation systems for events like Miss Asia Pacific International and various local festivals in the Philippines.",
-    "technologyStack": ["PHP", "JavaScript", "WebSocket", "MySQL"],
+    "technologyStack": [
+      "PHP",
+      "JavaScript",
+      "WebSocket",
+      "MySQL"
+    ],
     "impact": "Ensured accurate, transparent, and instant results for high-stakes competitions.",
-    "image": "/projects/event-tabulation.png",
+    "image": "/projects/event-tabulation.webp",
     "liveUrl": "",
     "repositoryUrl": "",
-    "tags": ["Real-time Systems", "Event Tech", "Full-stack"],
+    "tags": [
+      "Real-time Systems",
+      "Event Tech",
+      "Full-stack"
+    ],
     "featured": false
   }
 ]

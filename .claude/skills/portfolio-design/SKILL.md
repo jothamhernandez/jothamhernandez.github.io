@@ -4,113 +4,112 @@ description: >-
   The visual design system for this Nuxt + Tailwind CSS v4 portfolio: fonts,
   color palette, spacing rhythm, section patterns, and component styles. Use
   this whenever writing or changing any markup/styling in app/pages/index.vue,
-  app/pages/privacy.vue, or app/app.vue — new sections, cards, buttons, headings,
-  responsive tweaks, dark/black bands, hover states — so the result stays
-  on-brand. Trigger on requests like "add a section that looks like the others",
-  "restyle the projects cards", "make this match the site", "change the accent
-  color", or any Tailwind class edit to the pages.
+  app/pages/privacy.vue, app/pages/cv.vue, app/components/*, or app/app.vue —
+  new sections, cards, buttons, headings, responsive tweaks, dark/ink bands,
+  hover states — so the result stays on-brand. Trigger on requests like "add a
+  section that looks like the others", "restyle the projects cards", "make this
+  match the site", "change the accent color", or any Tailwind class edit.
 ---
 
-# Portfolio design system
+# Portfolio design system — "institutional navy, ivory, one brass-gold accent"
 
-This is an editorial, academic-portfolio aesthetic: serif display type, a
-near-monochrome zinc palette, a single warm accent, generous vertical rhythm,
-and full-bleed alternating section backgrounds. Match these tokens so new work
-looks native. Tailwind is v4, configured via `@tailwindcss/vite` (no
-`tailwind.config.js`); the only custom theme token lives in
-`app/assets/css/main.css`.
+Positioning: a **public-sector technologist and policy researcher** (ICT Officer
+at TESDA, graduate researcher in ICT Convergence at Handong, WorldSkills Expert,
+AWS-certified). The site must read as *professional and credible first*,
+impressive second. The owner explicitly asked for "really professional": no
+playful gimmicks (tilted ribbons, typing consoles, quirky italics, joke
+captions). Impressiveness comes from restraint, typography, real credentials,
+and one signature element: an ambient knowledge-graph canvas (`HeroGraph.vue`,
+labels off) behind the hero portrait — a nod to his HybridRAG research.
+
+Tailwind is v4 via `@tailwindcss/vite` (no `tailwind.config.js`). All tokens
+live in the `@theme` block of `app/assets/css/main.css`.
 
 ## Typography
 
-Three families, loaded from Google Fonts via `<link>` tags in `nuxt.config.ts`
-`app.head` (with `preconnect` for performance — not a render-blocking CSS
-`@import`). The `@theme` token block still lives in `app/assets/css/main.css`:
+Loaded from Google Fonts in `nuxt.config.ts` (`app.head.link`, with preconnect).
 
-- **Inter** — default body/UI. The page root sets `font-['Inter']`. Use for
-  paragraphs, descriptions, form fields.
-- **Noto Serif** — display/headings. Apply with the `font-noto-serif` utility
-  (defined as `--font-noto-serif` in the `@theme` block of `main.css`). Use for
-  every `<h1>`/`<h2>`/`<h3>` and the brand wordmark.
-- **Manrope** — small uppercase labels, eyebrows, buttons, tags, dates. Apply
-  inline with `font-['Manrope']`, almost always paired with
-  `uppercase tracking-widest` (or `tracking-[0.3em]`) and a tiny size
-  (`text-[10px]`/`text-xs`).
+- **Source Serif 4** — display serif. Utility `font-display` (aliased as
+  `font-noto-serif` for cv/privacy). Headings are `font-semibold`; one word in
+  a section title may be `italic font-normal` (gold on navy) for an editorial,
+  academic feel. Use italics sparingly.
+- **Inter** — body/UI (`font-sans`, the page default).
+- **IBM Plex Mono** — labels, eyebrows, dates, tags, data. Almost always
+  `font-mono text-[10px]/[11px] uppercase tracking-[0.18em–0.25em]`.
 
-Heading scale in use: hero `text-6xl lg:text-7xl`, section titles `text-4xl`,
-card titles `text-xl`/`text-2xl` — all `font-bold font-noto-serif`.
+Scale: hero name `text-[clamp(3.25rem,7.5vw,7rem)] font-semibold`, section
+titles `text-5xl md:text-6xl lg:text-7xl font-semibold leading-[0.95]`.
 
-## Color palette
+## Color tokens
 
-- **Neutrals:** `zinc` scale. Text `text-zinc-900` (near-black headings),
-  `text-zinc-600` (body), `text-zinc-500`/`text-zinc-400` (muted/labels).
-  Surfaces `bg-white` and `bg-zinc-100`; borders `border-zinc-100`/`zinc-200`.
-- **Accent:** `yellow-800` (a warm brown-gold) for links, eyebrows, dividers,
-  active states, and icon glyphs — with `orange-50`/`orange-100`/`orange-200`
-  as its soft tints (icon chips, tags on light). This is the site's one accent —
-  don't introduce new hues; to rebrand, swap `yellow-800` + its orange tints.
-- **Dark band:** the Technical Expertise section is `bg-black text-white` with
-  `zinc-900` chips and `zinc-800` borders. Reuse this exact treatment for any
-  inverted section.
+| Token | Use |
+|---|---|
+| `ink` #0b1a2e / `ink-2` / `ink-3` | deep navy bands, text on ivory |
+| `paper` #f7f5f0 / `paper-2` #edeae2 | ivory bands (alternate them) |
+| `gold` #c9a96a | accent **on navy** and primary buttons |
+| `gold-deep` #7d5f26 | accent **on ivory** (AA contrast) — never `gold` text on ivory |
+| `muted` | low-emphasis labels on navy |
 
-## Spacing & layout rhythm
+Opacity steps carry hierarchy (`text-paper/85`, `/70`, `/45`; `text-ink/75`,
+`/60`, `/45`). Borders `border-white/10–15` on navy, `border-ink/10–15` on
+ivory. No other hues. Buttons are `rounded-sm` (only the floating nav is a pill).
 
-- Content is centered in `<main class="max-w-7xl mx-auto px-6 lg:px-24">`.
-- Sections use vertical padding `py-32` (a few use `py-24`). Keep the cadence.
-- **Full-bleed bands:** to make a section span edge-to-edge with its own
-  background while content stays aligned, use the negative-margin trick:
-  `-mx-6 lg:-mx-24 px-6 lg:px-24` plus a `bg-*`. Used by About, Experience,
-  Expertise, Certifications, Contact — alternating white / `zinc-100` / black.
-- Grids: two-column feature layouts use `lg:grid-cols-12` with `col-span-4` /
-  `col-span-8`; card grids use `md:grid-cols-2` / `lg:grid-cols-3` with
-  `gap-6`/`gap-8`.
+## Section rhythm
 
-## Recurring component patterns
+Sections are full-bleed and alternate ink / paper / paper-2. Order: Hero (ink:
+name, statement, CTAs, credential rail + framed portrait) → Institutions strip
+(paper) → About+stats+"Profile at a glance" panel (paper) → Research
+(ink) → Publications (paper-2) → Work (paper) → Experience (paper-2) →
+Expertise (ink) → Credentials (paper) → Education (paper-2) → Vision (ink) →
+Contact (ink) → footer (ink-2, three-column: identity / sections / documents).
 
-**Section heading + accent underline** (left-aligned sections):
+Every section: `py-32 px-6 lg:px-12`, inner `max-w-[1400px] mx-auto`. Dark
+bands add `relative grain` (film-grain overlay from main.css).
+
+Section header pattern:
 
 ```html
-<div class="mb-16">
-  <h2 class="text-zinc-900 text-4xl font-bold font-noto-serif mb-4">Section Title</h2>
-  <div class="w-24 h-1 bg-yellow-800"></div>
-</div>
+<p v-reveal class="font-mono text-[11px] uppercase tracking-[0.25em] text-gold-deep mb-6">§ 04 — Projects</p>
+<h2 v-reveal="60" class="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight">
+  Selected <span class="italic font-normal">projects</span>
+</h2>
 ```
 
-**Eyebrow label** (above a heading or on a card):
+(On ink: eyebrow `text-gold`, italic word `text-gold`.) Keep the `§ NN`
+numbering sequential when adding/reordering sections.
 
-```html
-<span class="text-yellow-800 text-[10px] font-bold tracking-[0.2em] uppercase font-['Manrope']">LABEL</span>
-```
+## Components
 
-**Light card:** `p-8 bg-white border border-zinc-100 shadow-sm rounded flex flex-col gap-4`.
+- **Primary button:** `h-11/h-12 px-6/7 rounded-sm bg-gold text-ink text-sm font-semibold hover:bg-paper`.
+- **Secondary:** `rounded-sm border border-ink/20 hover:bg-ink hover:text-paper` (on ink: `border-white/20 hover:bg-white/10`).
+- **Chip/tag:** `font-mono text-[10px] uppercase tracking-wider px-2 py-1 border rounded-sm` (`border-white/10 text-paper/50` on ink, `border-ink/15 text-ink/55` or `bg-paper-2` on paper).
+- **Card on paper:** `bg-paper border border-ink/10 p-8 lg:p-10` with `hover:-translate-y-1` + soft shadow.
+- **Expertise spotlight card:** class `spotlight` + `@pointermove="onSpotlight"` (sets `--mx/--my`).
+- **Nav:** fixed floating pill (`bg-ink/85 backdrop-blur`) with scrollspy — active item `bg-gold text-ink`. Items come from `navItems` in index.vue. The mobile menu overlay lives **outside** `<nav>` (backdrop-blur would trap a fixed child).
 
-**Tag chip (light):** `px-3 py-1 bg-orange-100 text-yellow-800 text-[9px] font-bold uppercase rounded-full`.
-**Tag chip (dark band):** `px-2 py-1 bg-zinc-900 text-zinc-400 text-[10px] font-bold uppercase rounded border border-zinc-800`.
+## Motion
 
-**Primary button:** `px-8 py-4 bg-black text-white text-xs font-bold tracking-widest uppercase font-['Manrope']`.
-**Secondary button:** same box with `border border-zinc-200 text-zinc-900 hover:bg-zinc-50 transition-colors`.
+- `v-reveal` (plugin `app/plugins/reveal.ts`) fades/slides an element in once;
+  value = delay ms (`v-reveal="120"`). Stagger lists with `i * 60–90`.
+- The hero graph fires a calm pulse burst on load and every 12s (`graphBurst`).
+- Scroll-linked: reading-progress bar, experience timeline spine fill, Vision
+  quote word-by-word reveal, stats count-up. All computed in one rAF-throttled
+  scroll handler in index.vue.
+- Smooth scroll is **Lenis**; anchors are handled by a delegated click handler,
+  so any `<a href="#id">` works. Don't re-enable CSS `scroll-behavior`.
+- Everything respects `prefers-reduced-motion` (CSS + JS checks). Keep it that way.
+- The root wrapper has `overflow-x-clip` (not `hidden`) so the sticky/fixed UI
+  keeps working while the rotated ribbon can't cause sideways scroll.
 
-**Text link (underline-on-accent):** `border-b-2 border-yellow-800 pb-1 hover:text-yellow-800 transition-colors` with `text-[10px] font-bold tracking-widest uppercase`.
+## Accessibility
 
-## Interaction & motion
-
-- Smooth scrolling is handled by **Lenis** (initialized in `index.vue`
-  `onMounted`). Native `scroll-behavior` is disabled in CSS on purpose — don't
-  re-enable it. In-page `#anchor` links are intercepted to scroll via Lenis, so
-  new nav/anchor links work automatically as long as the target `id` exists.
-- Standard hover transition is `transition-colors` (or `transition-transform`
-  for the project image `group-hover:scale-105`). Keep durations subtle
-  (`duration-300`–`duration-700`).
-- **Accessibility:** interactive controls use `focus-visible:outline-2
-  focus-visible:outline-yellow-800 focus-visible:outline-offset-2` (never bare
-  `focus:outline-none` — that strips keyboard focus). Decorative glyphs/emoji and
-  the geometric hero shape carry `aria-hidden="true"`; the menu toggle exposes
-  `:aria-expanded`. Preserve these when editing.
-- The mobile nav is an overlay toggled by `isMenuOpen`; the back-to-top button
-  appears after 500px of scroll. If you add a top-level nav item, update **both**
-  the desktop and mobile lists (see `portfolio-section`).
+Global gold `:focus-visible` ring is in main.css — don't strip outlines.
+Decorative glyphs get `aria-hidden="true"`. The graph canvas has `role="img"`
+and an aria-label; the console has an `sr-only` static version.
 
 ## Responsive
 
-Mobile-first. Breakpoints in use are `md:` (~768px) and `lg:` (~1024px).
-Desktop nav shows at `md:`; multi-column grids and the `lg:px-24` gutter kick in
-at `lg:`. Always provide a single-column mobile fallback for new grids.
+Mobile-first; `lg:` (1024px) is the main switch (desktop nav, side-by-side hero,
+graph labels). Below `lg` the graph sits behind the text with a stronger veil
+and no canvas labels. Always give new grids a single-column fallback and verify
+at 375px with no horizontal overflow.

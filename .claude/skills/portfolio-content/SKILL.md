@@ -33,12 +33,12 @@ Arrays render in file order — reorder entries to reorder cards on the page.
 | File | Shape | Renders in section | Item fields |
 |------|-------|--------------------|-------------|
 | `profile.json` | object | Nav brand, footer, JSON-LD | `name`, `title`, `currentRole`, `email`, `location`, `linkedin`, `orcid`, `googleScholar`, `credly` |
-| `hero.json` | object | Hero | `headline`, `subtitle`, `summary`, `primaryCta{text,url}`, `secondaryCta{text,url}` |
-| `about.json` | object | About | `title`, `paragraphs[]`, `image` |
-| `researchInterests.json` | array | Research Interests | `id`, `title`, `description`, `icon`, `tags[]` |
+| `hero.json` | object | Hero + institutions strip | `headline` (the name), `eyebrow`, `statement` (one-line positioning), `primaryCta`/`secondaryCta{text,url}`, `cvUrl`, `availability` (portrait status line), `locations`, `credentials[{org,title,href}]` (3-item rail under the CTAs), `institutions[]` (strip below the hero; only bodies he genuinely worked/studied with or holds credentials from); `subtitle`/`summary` are legacy, unused |
+| `about.json` | object | About + Vision | `title`, `paragraphs[]`, `image` (`/portrait.jpg`, shown in the hero; strip EXIF/GPS before adding a new photo), `vision` (the word-by-word quote) |
+| `researchInterests.json` | array | Research + hero graph | `id`, `title`, `graphLabel` (short label drawn in the hero graph & marquee), `description`, `icon`, `tags[]` (first 3 become graph nodes) |
 | `experience.json` | array | Professional Experience | `role`, `organization`, `location`, `startDate`, `endDate`, `isCurrent`, `summary`, `highlights[]`, `technologies[]` |
 | `skills.json` | array | Technical Expertise | `id`, `category`, `description`, `skills[]` |
-| `projects.json` | array | Selected Projects | `id`, `title`, `type`, `status`, `year`, `role`, `shortDescription`, `technologyStack[]`, `image`, `liveUrl`, `repositoryUrl` (+ unused: `longDescription`, `impact`, `tags`, `featured`) |
+| `projects.json` | array | Selected Projects | `id`, `title`, `type`, `status`, `year`, `role`, `shortDescription`, `longDescription`, `impact`, `technologyStack[]`, `image` (`/projects/<id>.webp`, 1600×900 navy/gold cover — regenerate or add one with `scripts/project-covers/gen.py`, see its docstring), `liveUrl`, `repositoryUrl`, `featured` (+ unused: `tags`) |
 | `education.json` | array | Education | `institution`, `degree`, `field`, `startDate`, `endDate`, `location`, `description` |
 | `certifications.json` | array | Certifications & Credentials (`#certifications`) | `id`, `title`, `issuer`, `category` (`certification` \| `recognition` \| `course` — picks the sub-group), `issued` (`YYYY-MM-DD` or `YYYY`), `expires`, `badgeImage`, `credentialUrl`, `description`, `featured`, `verifiedBy` (`"Credly"` counts toward the verified total). Credly data: `https://www.credly.com/users/jotham-hernandez/badges.json` |
 | `awards.json` | array | Certifications & Awards | `title`, `organization`, `year`, `description` |

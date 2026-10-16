@@ -12,7 +12,7 @@ useHead({
 </script>
 
 <template>
-  <div class="w-full bg-white font-['Inter'] min-h-screen flex flex-col">
+  <div class="w-full bg-white font-sans min-h-screen flex flex-col">
     <!-- Navigation -->
     <nav class="sticky top-0 z-50 w-full px-8 py-4 bg-white/80 backdrop-blur-md border-b border-gray-100 flex justify-between items-center">
       <NuxtLink to="/" class="text-zinc-900 text-xl font-bold font-noto-serif hover:text-yellow-800 transition-colors">{{ profile.name }}</NuxtLink>
@@ -22,7 +22,7 @@ useHead({
     <main class="max-w-4xl mx-auto px-6 py-24 flex-grow">
       <h1 class="text-zinc-900 text-5xl font-bold font-noto-serif mb-12">Privacy Policy</h1>
       
-      <div class="prose prose-zinc lg:prose-lg max-w-none text-zinc-600 leading-relaxed space-y-8 font-['Inter']">
+      <div class="prose prose-zinc lg:prose-lg max-w-none text-zinc-600 leading-relaxed space-y-8 font-sans">
         <section>
           <h2 class="text-zinc-900 text-2xl font-bold font-noto-serif mb-4">Introduction</h2>
           <p>
@@ -71,13 +71,13 @@ useHead({
     <footer class="py-12 px-8 bg-zinc-100 border-t border-zinc-200">
       <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
         <div class="text-zinc-900 text-lg font-bold font-noto-serif">{{ profile.name }}</div>
-        <div class="flex flex-wrap justify-center gap-8 text-zinc-400 text-[10px] font-bold tracking-widest uppercase font-['Manrope']">
+        <div class="flex flex-wrap justify-center gap-8 text-zinc-400 text-[10px] font-bold tracking-widest uppercase font-mono">
           <a :href="profile.linkedin" target="_blank" class="hover:text-zinc-900 transition-colors">LINKEDIN</a>
           <a :href="profile.orcid" target="_blank" class="hover:text-zinc-900 transition-colors">ORCID</a>
           <a :href="profile.googleScholar" target="_blank" class="hover:text-zinc-900 transition-colors">GOOGLE SCHOLAR</a>
           <NuxtLink to="/" class="hover:text-zinc-900 transition-colors">HOME</NuxtLink>
         </div>
-        <div class="text-zinc-400 text-[10px] font-bold tracking-widest font-['Manrope'] uppercase">
+        <div class="text-zinc-400 text-[10px] font-bold tracking-widest font-mono uppercase">
           © {{ currentYear }} {{ profile.name }}. ALL INTELLECTUAL RIGHTS RESERVED.
         </div>
       </div>
