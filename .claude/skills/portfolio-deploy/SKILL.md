@@ -16,24 +16,19 @@ Nuxt 4 project. Package manager is **npm** (`package-lock.json` present). There
 is no test suite and no linter configured — "does it work" means it builds and
 renders.
 
-## ⚠️ Node version — must be 20.12+ (not the default 20.11)
+## ⚠️ Node version — must be 24.15+ (or 22.22.3+), not the default 20.x
 
-Nuxt's CLI (`nuxi`/`@clack/core`) imports `styleText` from `node:util`, which
-only exists in **Node ≥ 20.12** (also fine on 22/24). This machine's default
-`node` is `v20.11.1`, which crashes every `nuxt` command with
-`does not provide an export named 'styleText'`. Before `npm run dev/build/generate`,
-select a compatible version, e.g.:
+Nuxt 4.6 declares `engines.node: ^22.22.3 || ^24.15.0 || >=26.0.0`. This machine's
+default `node` is `v20.11.1`, which is too old for every `nuxt` command. Before
+`npm install` or `npm run dev/build/generate`, select a compatible version:
 
 ```bash
-nvm use 20.12.2   # or: nvm use 24
+nvm use 24.18.0
 ```
 
-Installed nvm versions include `v20.12.2` and `v24.12.0`. The `.claude/launch.json`
-dev config already points at the `v20.12.2` node binary so the preview tooling
-works. Consider pinning this with an `.nvmrc` (`20.12.2`) and an `engines` field
-in `package.json` so the requirement is explicit. The Dockerfile's `node:20-alpine`
-resolves to a current 20.x that already includes `styleText`, so container builds
-are unaffected.
+Installed nvm versions include `v24.18.0`; `v24.12.0` is too old. The
+`.claude/launch.json` dev config points at the `v24.18.0` node binary so the preview
+tooling works. The Dockerfile uses `node:24-alpine`.
 
 ## Local commands (from package.json)
 
@@ -64,7 +59,7 @@ success.
 
 ## Docker
 
-The `Dockerfile` is a two-stage build (Node 20 Alpine): stage 1 installs deps
+The `Dockerfile` is a two-stage build (Node 24 Alpine): stage 1 installs deps
 and runs `npm run build`; stage 2 copies `.output/` and runs the SSR server.
 
 ```bash
