@@ -1,9 +1,22 @@
 [
   {
+    "role": "Graduate Student Researcher",
+    "organization": "Handong Global University",
+    "location": "Pohang, South Korea",
+    "startDate": "2025",
+    "endDate": "2026",
+    "isCurrent": true,
+    "summary": "Graduate research in the Graduate School of Development and Entrepreneurship, focused on retrieval methods for workforce and skills intelligence.",
+    "highlights": [
+      "Co-authored a journal article on graph-validated retrieval for occupation-skill mapping, published in the International Journal of Internet, Broadcasting and Communication (2026)."
+    ],
+    "technologies": ["HybridRAG", "Knowledge Graphs", "Information Retrieval"]
+  },
+  {
     "role": "Information Technology Officer I",
     "organization": "TESDA",
-    "location": "Philippines",
-    "startDate": "2023",
+    "location": "Muntinlupa, Philippines",
+    "startDate": "2022",
     "endDate": "Present",
     "isCurrent": true,
     "summary": "Leading ICT initiatives and digital transformation projects within the national vocational education and training authority.",
@@ -34,7 +47,7 @@
     "organization": "TESDA",
     "location": "Philippines",
     "startDate": "2021",
-    "endDate": "2023",
+    "endDate": "2022",
     "isCurrent": false,
     "summary": "Provided technical expertise for institutional software and hardware systems.",
     "highlights": [

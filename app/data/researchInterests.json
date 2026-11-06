@@ -2,7 +2,7 @@
   {
     "id": "hybrid-rag",
     "title": "Retrieval-Augmented Generation and Knowledge Graphs",
-    "description": "Researching hybrid retrieval methods that combine semantic search with graph-based reasoning for more explainable and context-aware AI systems.",
+    "description": "Researching hybrid retrieval methods that combine semantic search with graph-based reasoning for more explainable and context-aware AI systems, including published work on graph-validated retrieval for occupation-skill mapping.",
     "icon": "AI",
     "tags": [
       "RAG",

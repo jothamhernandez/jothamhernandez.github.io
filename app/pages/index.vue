@@ -150,6 +150,27 @@ const structuredData = {
   alumniOf: education.map((e) => ({ '@type': 'CollegeOrUniversity', name: e.institution })),
   knowsAbout: researchInterests.map((r) => r.title),
   sameAs: [profile.linkedin, profile.orcid, profile.googleScholar, profile.credly],
+  identifier: {
+    '@type': 'PropertyValue',
+    propertyID: 'ORCID',
+    value: profile.orcid.split('/').pop(),
+    url: profile.orcid
+  },
+  affiliation: {
+    '@type': 'CollegeOrUniversity',
+    name: 'Handong Global University',
+    sameAs: 'https://ror.org/00txhkt32'
+  },
+  subjectOf: publications
+    .filter((p) => p.status === 'Published')
+    .map((p) => ({
+      '@type': 'ScholarlyArticle',
+      headline: p.title,
+      author: p.authors.split(', ').map((name) => ({ '@type': 'Person', name })),
+      datePublished: p.year,
+      isPartOf: { '@type': 'Periodical', name: p.journal },
+      url: p.doi || p.url || undefined
+    })),
   hasCredential: certifications
     .filter((c) => c.credentialUrl)
     .map((c) => ({
@@ -561,7 +582,7 @@ onBeforeUnmount(() => {
             >
               <div :class="index === 0 ? 'lg:col-span-4 flex flex-col gap-4' : 'flex items-center justify-between gap-4'">
                 <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-gold-deep">{{ pub.type }} · {{ pub.year }}</span>
-                <span :class="['self-start font-mono text-[10px] uppercase tracking-[0.2em] px-2.5 py-1 border rounded-sm', pub.status === 'In Progress' ? 'border-gold-deep text-gold-deep' : 'border-ink/30 text-ink/50']">{{ pub.status }}</span>
+                <span :class="['self-start font-mono text-[10px] uppercase tracking-[0.2em] px-2.5 py-1 border rounded-sm', pub.status === 'Published' ? 'bg-gold-deep border-gold-deep text-paper' : pub.status === 'In Progress' ? 'border-gold-deep text-gold-deep' : 'border-ink/30 text-ink/50']">{{ pub.status }}</span>
               </div>
               <div :class="index === 0 ? 'lg:col-span-8 flex flex-col gap-5' : 'flex flex-col gap-5 flex-1'">
                 <h3 :class="['font-display leading-[1.1] tracking-tight', index === 0 ? 'text-3xl md:text-4xl lg:text-5xl' : 'text-2xl md:text-3xl']">{{ pub.title }}</h3>
@@ -569,7 +590,7 @@ onBeforeUnmount(() => {
                   <span v-if="pub.authors">{{ pub.authors }}</span><span v-if="pub.authors && pub.venue"> — </span><span v-if="pub.venue" class="italic">{{ pub.venue }}</span>
                 </p>
                 <p class="text-ink/70 leading-relaxed">
-                  <span v-if="index === 0" class="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/40 mr-2">Abstract</span>{{ pub.description }}
+                  <span v-if="index === 0" class="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/40 mr-2">Summary</span>{{ pub.description }}
                 </p>
                 <div class="flex flex-wrap items-center gap-3 mt-auto pt-2">
                   <a v-if="pub.doi" :href="pub.doi" target="_blank" rel="noopener" class="font-mono text-[11px] uppercase tracking-widest border-b border-gold-deep text-ink hover:text-gold-deep">DOI ↗</a>

@@ -89,7 +89,7 @@ const print = () => {
         <h2 class="text-zinc-900 text-xs font-bold tracking-[0.2em] uppercase font-mono mb-4 border-b border-zinc-200 pb-1">Publications & Research Writing</h2>
         <ul class="flex flex-col gap-3">
           <li v-for="(pub, index) in publications" :key="index" class="text-xs leading-relaxed text-zinc-600">
-            <span class="text-zinc-900 font-bold">{{ pub.authors }}</span> ({{ pub.year }}). <span class="italic">{{ pub.title }}.</span> {{ pub.venue }}. <span class="text-zinc-400 uppercase tracking-widest text-[9px] font-bold">{{ pub.status }}</span>
+            <span class="text-zinc-900 font-bold">{{ pub.authors }}</span> ({{ pub.year }}). <span class="italic">{{ pub.title }}.</span> {{ pub.venue }}. <a v-if="pub.doi" :href="pub.doi" target="_blank" rel="noopener" class="hover:text-yellow-800">{{ pub.doi.replace('https://doi.org/', 'doi:') }}</a> <span class="text-zinc-400 uppercase tracking-widest text-[9px] font-bold">{{ pub.status }}</span>
           </li>
         </ul>
       </section>

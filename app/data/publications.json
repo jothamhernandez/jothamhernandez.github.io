@@ -1,15 +1,16 @@
 [
   {
     "title": "Graph-Validated Retrieval for Occupation-Skill Mapping in a HybridRAG Prototype",
-    "authors": "J. Hernandez",
-    "venue": "Manuscript in preparation",
-    "type": "Research Note",
-    "status": "In Progress",
+    "authors": "Sungbae Jo, Jotham M. Hernandez, Yunseon Kim, Dongkyun Kim",
+    "venue": "International Journal of Internet, Broadcasting and Communication, 18(5), 352–366",
+    "journal": "International Journal of Internet, Broadcasting and Communication",
+    "type": "Journal Article",
+    "status": "Published",
     "year": "2026",
-    "doi": "",
+    "doi": "https://doi.org/10.7236/IJIBC.2026.18.5.352",
     "url": "",
-    "description": "Exploring the synergy between vector-based retrieval and structured knowledge representation for explainable, context-aware AI systems.",
-    "tags": ["RAG", "Knowledge Graph", "Explainable AI"]
+    "description": "Adds a graph validation step to vector retrieval, using a knowledge graph built from the Singapore Qualification Framework. Across 87,664 query-target pairs, Precision@1 rose from 0.739 to 0.928 and MRR from 0.804 to 0.928, at a cost of about 6 ms in average latency. The validator returned no candidate for 7.2% of queries.",
+    "tags": ["HybridRAG", "Knowledge Graph", "Occupation-Skill Mapping", "Workforce Intelligence"]
   },
   {
     "title": "Digital Government and AI Readiness in Public-Sector Institutions",
